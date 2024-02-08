@@ -1,28 +1,38 @@
-const { Gallery } = require('../models');
+const { Reservations } = require('../models');
 
-const gallerydata = [
+const reservationData = [
   {
-    name: 'Printemps',
-    starting_date: 'April 20, 2021 07:00:00',
-    ending_date: 'June 21, 2021 17:00:00',
-  },
-  {
-    name: 'Sommer',
-    starting_date: 'June 22, 2021 09:00:00',
-    ending_date: 'September 22, 2021 22:00:00',
-  },
-  {
-    name: 'Herfst',
-    starting_date: 'September 23, 2021 08:30:00',
-    ending_date: 'December 21, 2021 20:30:00',
-  },
-  {
-    name: 'Invierno',
-    starting_date: 'December 22, 2020 11:00:00',
-    ending_date: 'March 19, 2021 19:00:00',
-  },
+    "party_size": 3,
+    "reservation_datetime": "2024-02-09 23:45:50",
+    "notes": "Special request for reservation 1",
+    "customer_id": 8
+},
+{
+    "party_size": 5,
+    "reservation_datetime": "2024-02-10 23:45:50",
+    "notes": "Special request for reservation 2",
+    "customer_id": 10
+},
+{
+    "party_size": 1,
+    "reservation_datetime": "2024-02-11 23:45:50",
+    "notes": "Special request for reservation 3",
+    "customer_id": 7
+},
+{
+    "party_size": 4,
+    "reservation_datetime": "2024-02-12 23:45:50",
+    "notes": "Special request for reservation 4",
+    "customer_id": 4
+},
+{
+    "party_size": 5,
+    "reservation_datetime": "2024-02-13 23:45:50",
+    "notes": "Special request for reservation 5",
+    "customer_id": 3
+}
 ];
 
-const seedGallery = () => Gallery.bulkCreate(gallerydata);
+const seedReservations = () => Reservation.bulkCreate(reservationData);
 
-module.exports = seedGallery;
+module.exports = seedReservations;

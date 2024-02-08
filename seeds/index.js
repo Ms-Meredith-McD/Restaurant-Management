@@ -7,10 +7,14 @@ const seedOrder = require('./orderData');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
 
-  await seedGallery();
+  await seedCustomer()
 
-  await seedPaintings();
+  await seedMenu()
 
+  await seedReservation()
+  
+  await seedOrder()
+  
   process.exit(0);
 };
 
