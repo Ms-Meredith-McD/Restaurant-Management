@@ -2,11 +2,11 @@ const { Model, DataTypes, TIME } = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-class Reservation extends Model {
+class Order extends Model {
     
 }
 
-Reservation.init(
+Order.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -14,18 +14,6 @@ Reservation.init(
             primaryKey: true,
             autoIncrement: true,
             },
-        party_size: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        reservation_datetime: {
-            type: DataType.DATETIME,
-            allowNull: false,
-        },
-        notes: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         customer_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -33,7 +21,13 @@ Reservation.init(
             key: 'id',
             },
         },
-        
+        menu_item_id: {
+            type: DataTypes.INTEGER,
+            references: {
+            model: 'menu',
+            key: 'id',
+            },
+        },
     },
     
     {
@@ -42,8 +36,6 @@ Reservation.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'reservation',
+        modelName: 'order',
     }
 );
-
-module.exports = Reservation;
