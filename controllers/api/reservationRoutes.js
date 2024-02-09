@@ -1,3 +1,5 @@
+// PUT/UPDATE route does NOT work -- line 39
+
 const router = require('express').Router();
 const Reservations = require('../../models/Reservations');
 
@@ -35,20 +37,20 @@ router.post('/', (req, res) => {
 
 
 // UPDATE   - come back to this, so far there is a validation error when run in Postman, unknown why
-router.put('/:id', (req, res) => {
-    Reservations.update(
-        req.body,
-        {
-            where: {
-            id: req.params.isbn,
-            },
-        }
-    )
-        .then((updatedReservation) => {
-            res.json({status: "update"});
-        })
-        .catch((err) => res.json(err));
-});
+// router.put('/:id', (req, res) => {
+//     Reservations.update(
+//         req.body,
+//         {
+//             where: {
+//             id: req.params.isbn,
+//             },
+//         }
+//     )
+//         .then((updatedReservation) => {
+//             res.json({status: "update"});
+//         })
+//         .catch((err) => res.json(err));
+// });
 
 
 
