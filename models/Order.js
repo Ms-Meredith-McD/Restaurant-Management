@@ -39,3 +39,5 @@ Order.init(
         modelName: 'order',
     }
 );
+
+module.exports = Order;

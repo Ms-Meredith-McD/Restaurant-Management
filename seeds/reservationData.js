@@ -1,4 +1,4 @@
-const { Reservations } = require('../models');
+const Reservations = require('../models/Reservations');
 
 const reservationData = [
   {
@@ -33,6 +33,6 @@ const reservationData = [
 }
 ];
 
-const seedReservations = () => Reservation.bulkCreate(reservationData);
+const seedReservations = () => Reservations.bulkCreate(reservationData);
 
 module.exports = seedReservations;
