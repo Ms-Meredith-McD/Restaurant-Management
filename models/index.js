@@ -16,8 +16,20 @@ Reservation.belongsTo(Customer, {
 Customer.hasMany(Reservation, {
   foreignKey: 'customer_id',
   onDelete: 'CASCADE'
-})
-// menu items belongs to many customers (through order)
+});
+
+Order.belongsTo(Customer,
+  { foreignKey: 'customer_id' });
+
+Order.belongsTo(Menu,
+  { foreignKey: 'menu_id' })
+
+Customer.hasMany(Order,
+  { foreignKey: 'customer_id' });
+
+Menu.hasMany(Order,
+  { foreignKey: 'menu_id' })
+
 Menu.belongsToMany(Customer, {
   through: {
     model: Order,
@@ -25,7 +37,7 @@ Menu.belongsToMany(Customer, {
   },
   as: 'menu_customers'
 });
-// customers belong to many menu items (through order)
+// // customers belong to many menu items (through order)
 Customer.belongsToMany(Menu, {
   through: {
     model: Order,
