@@ -5,8 +5,8 @@ const customerRoutes = require('./customerRoutes');
 // const reservationRoutes = require('./reservationRoutes');
 
 router.use('/customers', customerRoutes);
-// router.use('/menu', menuRoutes);
-// router.use('/order', orderRoutes);
-// router.use('/reservations', reservationRoutes);
+router.use('/menu', menuRoutes);
+router.use('/order', orderRoutes);
+router.use('/reservations', reservationRoutes);
 
 module.exports = router;
