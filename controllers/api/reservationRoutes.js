@@ -10,33 +10,33 @@ router.get('/', (req, res) => {
 
 
 // CUSTOMIZED FIND 
-router.get('/:id', (req, res) => {
-    Reservations.findAll()
+// router.get('/:id', (req, res) => {
+//     Reservations.findAll()
 
-    }).then((reservationData) => {
-        res.json(reservationData);
-    });
+//     }).then((reservationData) => {
+//         res.json(reservationData);
+//     });
 
 
 
 
 // GET BY ID
-router.get('/:id', (req, res) => {
-    Book.findByPk(req.params.id).then((bookData) => {
-        res.json(bookData);
-    });
-});
+// router.get('/:id', (req, res) => {
+//     Book.findByPk(req.params.id).then((bookData) => {
+//         res.json(bookData);
+//     });
+// });
 
 
 
 
 // CREATE
-router.post('/', (req, res) => {
-    Book.create(req.body)
-        .then((newBook) => {
-            res.json(newBook);
-        })
-        .catch((err) => {
-            res.json(err);
-        });
-});
+// router.post('/', (req, res) => {
+//     Book.create(req.body)
+//         .then((newBook) => {
+//             res.json(newBook);
+//         })
+//         .catch((err) => {
+//             res.json(err);
+//         });
+// });
