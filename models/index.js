@@ -2,18 +2,18 @@
 const Customer = require('./Customer');
 const Menu = require('./Menu');
 const Order = require('./Order');
-const Reservations = require('./Reservations');
+const Reservation = require('./Reservations');
 
 //reservation and customer w/ customer_id
 //customer and menu through order
 
 // Reservation belong to Customer
-Reservations.belongsTo(Customer, {
+Reservation.belongsTo(Customer, {
   foreignKey: 'customer_id'
 });
 
 // Customer has many Reservations
-Customer.hasMany(Reservations, {
+Customer.hasMany(Reservation, {
   foreignKey: 'customer_id',
   onDelete: 'CASCADE'
 })
@@ -38,5 +38,5 @@ module.exports = {
   Customer,
   Menu,
   Order,
-  Reservations,
+  Reservation,
 };
