@@ -1,10 +1,8 @@
-const { Model, DataTypes, TIME } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-class Reservation extends Model {
-    
-}
+class Reservation extends Model {}
 
 Reservation.init(
     {
@@ -19,7 +17,7 @@ Reservation.init(
             allowNull: false,
         },
         reservation_datetime: {
-            type: DataType.DATETIME,
+            type: DataTypes.DATE,
             allowNull: false,
         },
         notes: {
