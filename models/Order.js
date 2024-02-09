@@ -21,7 +21,7 @@ Order.init(
             key: 'id',
             },
         },
-        menu_item_id: {
+        menu_id: {
             type: DataTypes.INTEGER,
             references: {
             model: 'menu',
