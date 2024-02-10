@@ -90,7 +90,7 @@ const Menu = require('../models/Menu');
       "has_dairy": false,
       "vegetarian": true,
       "gluten_free": true,
-      "price": 10.99
+      "price": 7.99
   },
   {
     "menu_item": "Grilled Portobello Burger",
@@ -99,7 +99,7 @@ const Menu = require('../models/Menu');
     "has_dairy": false,
     "vegetarian": true,
     "gluten_free": false,
-    "price": 10.99
+    "price": 11.99
 },
 {
     "menu_item": "Shrimp Scampi",
@@ -117,7 +117,7 @@ const Menu = require('../models/Menu');
     "has_dairy": false,
     "vegetarian": false,
     "gluten_free": true,
-    "price": 10.99
+    "price": 16.99
 },
 {
     "menu_item": "Chicken Tikka Masala",
@@ -126,7 +126,7 @@ const Menu = require('../models/Menu');
     "has_dairy": true,
     "vegetarian": false,
     "gluten_free": false,
-    "price": 10.99
+    "price": 16.99
 },
 {
     "menu_item": "Falafel Wrap",
@@ -135,7 +135,7 @@ const Menu = require('../models/Menu');
     "has_dairy": false,
     "vegetarian": true,
     "gluten_free": false,
-    "price": 10.99
+    "price": 9.99
 },
 {
     "menu_item": "Spinach and Goat Cheese Salad",
@@ -144,7 +144,7 @@ const Menu = require('../models/Menu');
     "has_dairy": true,
     "vegetarian": true,
     "gluten_free": true,
-    "price": 10.99
+    "price": 8.99
 },
 {
     "menu_item": "BBQ Pork Ribs",
@@ -153,7 +153,7 @@ const Menu = require('../models/Menu');
     "has_dairy": false,
     "vegetarian": false,
     "gluten_free": false,
-    "price": 10.99
+    "price": 15.99
 },
 {
     "menu_item": "Butternut Squash Soup",
@@ -161,7 +161,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": true,
     "vegetarian": true,
-    "gluten_free": true
+    "gluten_free": true,
+    "price": 8.99
 },
 {
     "menu_item": "Eggplant Parmesan",
@@ -170,7 +171,7 @@ const Menu = require('../models/Menu');
     "has_dairy": true,
     "vegetarian": true,
     "gluten_free": false,
-    "price": 10.99
+    "price": 14.99
 },
 {
     "menu_item": "Lemon Herb Grilled Chicken",
@@ -179,7 +180,7 @@ const Menu = require('../models/Menu');
     "has_dairy": false,
     "vegetarian": false,
     "gluten_free": true,
-    "price": 10.99
+    "price": 14.99
 },
 {
   "menu_item": "Pesto Pasta Primavera",
@@ -188,7 +189,7 @@ const Menu = require('../models/Menu');
   "has_dairy": true,
   "vegetarian": true,
   "gluten_free": false,
-  "price": 10.99
+  "price": 14.99
 },
 {
   "menu_item": "Steak Frites",
@@ -197,7 +198,7 @@ const Menu = require('../models/Menu');
   "has_dairy": true,
   "vegetarian": false,
   "gluten_free": true,
-  "price": 10.99
+  "price" :17.99
 },
 {
   "menu_item": "Roasted Vegetable Quiche",
@@ -215,7 +216,7 @@ const Menu = require('../models/Menu');
   "has_dairy": false,
   "vegetarian": false,
   "gluten_free": false,
-  "price": 10.99
+  "price": 13.99
 },
 {
   "menu_item": "Lamb Gyro",
@@ -224,7 +225,7 @@ const Menu = require('../models/Menu');
   "has_dairy": true,
   "vegetarian": false,
   "gluten_free": false,
-  "price": 10.99
+  "price": 9.99
 }
 ]
 
