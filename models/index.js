@@ -2,10 +2,9 @@
 const Customer = require('./Customer');
 const Menu = require('./Menu');
 const Order = require('./Order');
+const OrderMenu = require('./OrderMenu');
 const Reservation = require('./Reservations');
 
-//reservation and customer w/ customer_id
-//customer and menu through order
 
 // Reservation belong to Customer
 Reservation.belongsTo(Customer, {
@@ -21,18 +20,18 @@ Customer.hasMany(Reservation, {
 Order.belongsTo(Customer,
   { foreignKey: 'customer_id' });
 
-Order.belongsTo(Menu,
-  { foreignKey: 'menu_id' })
-
 Customer.hasMany(Order,
   { foreignKey: 'customer_id' });
 
 Menu.hasMany(Order,
-  { foreignKey: 'menu_id' })
+  { foreignKey: 'menu_id' });
 
-Menu.belongsToMany(Customer, {
+Order.hasMany(Menu,
+    { foreignKey: 'menu_id' });
+
+    Menu.belongsToMany(Customer, {
   through: {
-    model: Order,
+    model: OrderMenu,
     unique: false
   },
   as: 'menu_customers'
@@ -40,7 +39,7 @@ Menu.belongsToMany(Customer, {
 // // customers belong to many menu items (through order)
 Customer.belongsToMany(Menu, {
   through: {
-    model: Order,
+    model: OrderMenu,
     unique: false
   },
   as: 'customer_menu'
@@ -51,4 +50,5 @@ module.exports = {
   Menu,
   Order,
   Reservation,
+  OrderMenu,
 };
