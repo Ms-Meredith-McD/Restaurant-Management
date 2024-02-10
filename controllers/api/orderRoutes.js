@@ -1,7 +1,7 @@
 //TODO GET is working but only has a single association.  Gotta revisit index.js
 
 const router = require('express').Router();
-const { Order, Customer, Menu } = require('../../models');
+const { Order, Customer, Menu, OrderMenu } = require('../../models');
 
 router.get('/', async (req, res) => {
       try {
@@ -48,42 +48,45 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const order = await Order.create(req.body);
-  let customerId = req.body.customerId
-  if (req.body.menuIds.length) {
-    const orderCustomerIdArr = req.body.menuIds.map(menu_id => {
+  let customerId = req.body.customer_id
+  // let orderId = order.id
+  if (req.body.menu_ids.length) {
+    const orderCustomerIdArr = req.body.menu_ids.map(menu_id => {
       return {       
         customer_id: customerId,
+        order_id: order.id,
         menu_id,
       }
     })
-    const productTagIds = await Order.bulkCreate(orderCustomerIdArr);
-      res.status(200).json(productTagIds);
+    const orderMenuRecords = await OrderMenu.bulkCreate(orderCustomerIdArr);
+    // const menuIds = orderMenuRecords.map(record => record.menu_id)
+      res.status(200).json(orderMenuRecords);
   }
 })
-
-router.post('/', (req, res) => {
+ 
+// router.post('/', (req, res) => {
   
-  Order.create(req.body)
-    .then((order) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.itemIds.length) {
-        const itemArr = req.body.itemsIds.map((menu_id) => {
-          return {
-            customer_id,
-            menu_id,
-          };
-        });
-        return OrderMenu.bulkCreate(itemArr);
-      }
-      // if no product tags, just respond
-      res.status(200).json(order);
-    })
-    .then((menuItemIds) => res.status(200).json(menuItemIds))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-});
+//   Order.create(req.body)
+//     .then((order) => {
+//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+//       if (req.body.itemIds.length) {
+//         const itemArr = req.body.itemsIds.map((menu_id) => {
+//           return {
+//             customer_id,
+//             menu_id,
+//           };
+//         });
+//         return OrderMenu.bulkCreate(itemArr);
+//       }
+//       // if no product tags, just respond
+//       res.status(200).json(order);
+//     })
+//     .then((menuItemIds) => res.status(200).json(menuItemIds))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
 
 // PUT update product
 // router.put('/:id', (req, res) => {
