@@ -15,16 +15,16 @@ OrderMenu.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Order',
+        model: 'order',
         key: 'id'
       }
     },
     menu_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+      unique: false,
       references: {
-        model: 'Menu',
+        model: 'menu',
         key: 'id'
       }
     },
@@ -33,7 +33,7 @@ OrderMenu.init(
     sequelize,
     timestamps: false,
     freezeTableName: true,
-    underscored: true,
+    underscored: false,
     modelName: 'order_menu',
   }
 );
