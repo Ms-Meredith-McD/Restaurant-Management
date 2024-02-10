@@ -28,7 +28,17 @@ Menu.hasMany(Order,
 
 Order.hasMany(Menu,
     { foreignKey: 'menu_id' });
+//testcode
+    // Order.belongsToMany(Menu, { 
+    //   through: {
+    //     model: OrderMenu,
+    //   unique: false }})
 
+    //   Menu.belongsToMany(Order, { 
+    //     through: {
+    //       model: OrderMenu,
+    //     unique: false }})
+//testcode
     Menu.belongsToMany(Customer, {
   through: {
     model: OrderMenu,
