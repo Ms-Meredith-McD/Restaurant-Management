@@ -53,6 +53,21 @@ router.get('/:id', async (req, res) => {
   res.json(payload);
 });
 
+router.post('/', async (req, res) => {
+  const order = await Order.create(req.body);
+  let customerId = req.body.customerId
+  if (req.body.menuIds.length) {
+    const orderCustomerIdArr = req.body.menuIds.map(menu_id => {
+      return {       
+        customer_id: customerId,
+        menu_id,
+      }
+    })
+    const productTagIds = await Order.bulkCreate(orderCustomerIdArr);
+      res.status(200).json(productTagIds);
+  }
+})
+
 // // router.post('/', (req, res) => {
 // //   Order.create(req.body)
 // //     .then((order) => {
