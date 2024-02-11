@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 //GET about us page
-router.get('/about', async (req, res) => {
+router.get('/about-us', async (req, res) => {
     res.render('about-us');
 });
 
@@ -107,7 +107,7 @@ router.get('/order', async (req, res) => {
 //******THIS WILL NEED TO BE TESTED, order:order may cause issues since this is now an array */
         res.render('order', {
             order: order,
-            logged_in: true
+            logged_in: false
         });
     } catch (err) {
         res.status(500).json(err);
