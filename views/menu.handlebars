@@ -5,13 +5,14 @@
     </h2>
   </div>
   {{#each menu as |menu|}}
-  <div class="dish col-md-5">
-    <p>
-      {{menu.id}}.
-      {{menu.menu_item}}.
-      {{menu.price}}
-    </p>
-    </p>
+
+    <div class="dish col-md-5">
+      <p>
+        {{menu.menu_item}}.
+        {{menu.price}}
+      </p>
+      </p>
+
     {{#if has_nuts}}
     <p class="has-nuts">
       Contains Nuts

@@ -1,9 +1,23 @@
 <h2>Book a reservation!</h2>
-<p>Interested in reserving a table for a special occasion? Feel free to use the form below. Please provide your name, table size, and time!</p>
+<p>Interested in reserving a table for a special occasion? Feel free to use the form below. Please provide your date, time table size, and any additional notes you have!</p>
 
 
+<input type="date" name="reservationDate" required>
+<label for="reservedTime">Select Time:</label>
+<select id="reservedTime" name="tableSize" required>
+ <option value="5:00">5:00</option>
+  <option value="5:30">5:30</option>
+  <option value="6:00">6:00</option>
+  <option value="6:30">6:30</option>
+   <option value="7:00">7:00</option>
+  <option value="7:30">7:30</option>
+  <option value="8:00">8:00</option>
+  <option value="8:30">8:30</option>
+   <option value="9:00">9:00</option>
+      <option value="9:30">9:30</option>
 
-<input type="text" name="name" placeholder="name" required>
+</select>
+
 <label for="tableSize">Table Size:</label>
 <select id="tableSize" name="tableSize" required>
  <option value="1">1</option>
@@ -18,6 +32,7 @@
   <option value="10">10</option>
 
 </select>
+
 <input type="datetime-local" name="reservationTime" required>
 <button id="reservatonSubmit" type="submit">Submit</button>
 </form>
@@ -31,19 +46,10 @@ form.addEventListener('submit', async function(event) {
   //gather data from form
 
 
-const resp = await fetch("/api/signup", {
-    method: "POST",
-    body: JSON.stringify({
-      fname: "gary",
-      lname: "almes"
-    }),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  const data = resp.json
-  console.log(data)
-})
 
-Header, reservations
+</form>
+
+<input type="text" name="notes" placeholder="notes" required>
+
+<button id="reservatonSubmit" type="submit">Submit</button>
 
