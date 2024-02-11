@@ -160,7 +160,7 @@ router.get('/customer/:id', withAuth, async (req, res) => {
 });
 
 // Reservation page, auth required, THIS PAGE SHOWS ALL RESERVATIONS, this will not post new reservations, that will be done on front end with fetch
-router.get('/reservation', withAuth, async (req, res) => {
+router.get('/reservation', async (req, res) => {
     try {
         //find all reservation items
         const reservationData = await Reservation.findAll();
@@ -170,7 +170,7 @@ router.get('/reservation', withAuth, async (req, res) => {
 //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('reservation', {
             reservation: reservation,
-            logged_in: true
+            logged_in: false
         });
     } catch (err) {
         res.status(500).json(err);

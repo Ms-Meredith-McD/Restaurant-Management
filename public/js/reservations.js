@@ -5,8 +5,10 @@ form.addEventListener('submit', async function(event) {
 
     const name = document.querySelector(`input[name="name"]`).value;
     const tableSize = document.querySelector(`input[name="tableSize"]`).value;
+    const reservationDate = document.querySelector(`input[name="reservationDate"]`).value;
     const reservationTime = document.querySelector(`input[name="reservationTime"]`).value;
     const notes = document.querySelector(`input[name="notes"]`).value;
+    
 
   const resp = await fetch("/api/reservations", {
       method: "POST",
@@ -20,7 +22,7 @@ form.addEventListener('submit', async function(event) {
         "Content-Type": "application/json"
       }
     })
-    const data = resp.json
+    const data = await resp.json
     console.log(data)
   })
   
