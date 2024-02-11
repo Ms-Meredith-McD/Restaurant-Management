@@ -21,13 +21,13 @@ Order.init(
             key: 'id',
             },
         },
-        // menu_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //     model: 'menu',
-        //     key: 'id',
-        //     },
-        // },
+        menu_id: {
+            type: DataTypes.INTEGER,
+            references: {
+            model: 'menu',
+            key: 'id',
+            },
+        },
     },
     
     {
