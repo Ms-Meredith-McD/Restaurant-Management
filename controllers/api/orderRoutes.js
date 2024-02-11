@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         },
         {
           model: Menu,
-          foreignKey: "menu_id"
+          as: "menu_order",
         },
       ],
     });
@@ -46,6 +46,42 @@ router.get('/:id', async (req, res) => {
   res.json(payload);
 });
 
+<<<<<<< HEAD
+
+router.post('/', (req, res) => {
+  let createdOrder;
+
+  Order.create(req.body)
+    .then((order) => {
+      createdOrder = order;
+
+      const customerID = req.body.customer_id;
+      const itemArr = req.body.itemIds.map((menu_id) => {
+        return {
+          customer_id: customerID,
+          menu_id,
+          order_id: order.id,
+        };
+      });
+
+      // Associate menu items with the order using create method
+      return OrderMenu.bulkCreate(itemArr, { order_id: order.id });
+    })
+    .then((menuItemIds) => {
+      // Combine the order and menu items in the response
+      const response = {
+        order: createdOrder,
+        menuItems: menuItemIds,
+      };
+
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
+=======
 router.post('/', async (req, res) => {
   const order = await Order.create(req.body);
   let customerId = req.body.customer_id
@@ -87,6 +123,7 @@ router.post('/', async (req, res) => {
 //       res.status(400).json(err);
 //     });
 // });
+>>>>>>> e2725fb8d24ff8ed178da5381d22a6a58601241e
 
 // PUT update product
 // router.put('/:id', (req, res) => {
