@@ -116,23 +116,33 @@ router.post('/', async (req, res) => {
 // })
  
 // router.post('/', (req, res) => {
-  
+//   let createdOrder;
+
 //   Order.create(req.body)
 //     .then((order) => {
-//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-//       if (req.body.itemIds.length) {
-//         const itemArr = req.body.itemsIds.map((menu_id) => {
-//           return {
-//             customer_id,
-//             menu_id,
-//           };
-//         });
-//         return OrderMenu.bulkCreate(itemArr);
-//       }
-//       // if no product tags, just respond
-//       res.status(200).json(order);
+//       createdOrder = order;
+
+//       const customerID = req.body.customer_id;
+//       const itemArr = req.body.itemIds.map((menu_id) => {
+//         return {
+//           customer_id: customerID,
+//           menu_id,
+//           order_id: order.id,
+//         };
+//       });
+
+//       // Associate menu items with the order using create method
+//       return OrderMenu.bulkCreate(itemArr, { order_id: order.id });
 //     })
-//     .then((menuItemIds) => res.status(200).json(menuItemIds))
+//     .then((menuItemIds) => {
+//       // Combine the order and menu items in the response
+//       const response = {
+//         order: createdOrder,
+//         menuItems: menuItemIds,
+//       };
+
+//       res.status(200).json(response);
+//     })
 //     .catch((err) => {
 //       console.log(err);
 //       res.status(400).json(err);
