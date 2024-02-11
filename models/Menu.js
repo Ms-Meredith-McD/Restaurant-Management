@@ -35,6 +35,10 @@ Menu.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
+        price: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false,
+        }
     },
     {
         sequelize,

@@ -1,0 +1,50 @@
+<h2>Book a reservation!</h2>
+<p>Interested in reserving a table for a special occasion? Feel free to use the form below. Please provide your name, table size, and time!</p>
+
+
+
+<input type="text" name="name" placeholder="name" required>
+<label for="tableSize">Table Size:</label>
+<select id="tableSize" name="tableSize" required>
+ <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+   <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+   <option value="9">9</option>
+  <option value="10">10</option>
+
+</select>
+<input type="datetime-local" name="reservationTime" required>
+<button id="reservatonSubmit" type="submit">Submit</button>
+</form>
+
+
+
+
+<!-- Below is a placeholder post request function provided to me by Andrew. In a later push I will be implementing this function in the js file.
+
+
+form.addEventListener('submit', async function(event) {
+  //gather data from form
+
+
+const resp = await fetch("/api/signup", {
+    method: "POST",
+    body: JSON.stringify({
+      fname: "gary",
+      lname: "almes"
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  const data = resp.json
+  console.log(data)
+})
+
+Header, reservations
+

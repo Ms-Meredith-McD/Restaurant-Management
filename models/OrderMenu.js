@@ -19,12 +19,21 @@ OrderMenu.init(
         key: 'id'
       }
     },
+    menu_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: false,
+      references: {
+        model: 'menu',
+        key: 'id'
+      }
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
-    underscored: true,
+    underscored: false,
     modelName: 'order_menu',
   }
 );

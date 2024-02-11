@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:Id', (req, res) => {
-    const customerId = req.params.customerId;
+    const customerId = req.params.Id;
     Customer.findByPk(customerId)
         .then(customer => {
             if (!customer) {
@@ -46,8 +46,9 @@ router.put('/:Id', (req, res) => {
 });
 
 
-router.delete('/customers/:Id', (req, res) => {
-    const customerId = req.params.customerId;
+router.delete('/:Id', (req, res) => {
+    const customerId = req.params.Id;
+    console.log(customerId)
     Customer.findByPk(customerId)
         .then(customer => {
             if (!customer) {

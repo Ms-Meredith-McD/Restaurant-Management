@@ -46,6 +46,7 @@ router.get('/:id', async (req, res) => {
   res.json(payload);
 });
 
+<<<<<<< HEAD
 
 router.post('/', (req, res) => {
   let createdOrder;
@@ -80,6 +81,49 @@ router.post('/', (req, res) => {
       res.status(400).json(err);
     });
 });
+=======
+router.post('/', async (req, res) => {
+  const order = await Order.create(req.body);
+  let customerId = req.body.customer_id
+  // let orderId = order.id
+  if (req.body.menu_ids.length) {
+    const orderCustomerIdArr = req.body.menu_ids.map(menu_id => {
+      return {       
+        customer_id: customerId,
+        order_id: order.id,
+        menu_id,
+      }
+    })
+    const orderMenuRecords = await OrderMenu.bulkCreate(orderCustomerIdArr);
+    // const menuIds = orderMenuRecords.map(record => record.menu_id)
+      res.status(200).json(orderMenuRecords);
+  }
+})
+ 
+// router.post('/', (req, res) => {
+  
+//   Order.create(req.body)
+//     .then((order) => {
+//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+//       if (req.body.itemIds.length) {
+//         const itemArr = req.body.itemsIds.map((menu_id) => {
+//           return {
+//             customer_id,
+//             menu_id,
+//           };
+//         });
+//         return OrderMenu.bulkCreate(itemArr);
+//       }
+//       // if no product tags, just respond
+//       res.status(200).json(order);
+//     })
+//     .then((menuItemIds) => res.status(200).json(menuItemIds))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
+>>>>>>> e2725fb8d24ff8ed178da5381d22a6a58601241e
 
 // PUT update product
 // router.put('/:id', (req, res) => {

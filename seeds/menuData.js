@@ -7,7 +7,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": false,
       "vegetarian": true,
-      "gluten_free": true
+      "gluten_free": true,
+      "price": 7.99
   },
   {
       "menu_item": "Classic Caesar Salad",
@@ -15,7 +16,9 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": true,
       "vegetarian": true,
-      "gluten_free": false
+      "gluten_free": false,
+      "price": 7.99
+      
   },
   {
       "menu_item": "Spicy Thai Peanut Noodles",
@@ -23,7 +26,8 @@ const Menu = require('../models/Menu');
       "has_nuts": true,
       "has_dairy": false,
       "vegetarian": true,
-      "gluten_free": true
+      "gluten_free": true,
+      "price": 14.99
   },
   {
       "menu_item": "Margherita Pizza",
@@ -31,7 +35,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": true,
       "vegetarian": true,
-      "gluten_free": false
+      "gluten_free": false,
+      "price": 13.99
   },
   {
       "menu_item": "Beef Burger",
@@ -39,7 +44,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": false,
       "vegetarian": false,
-      "gluten_free": false
+      "gluten_free": false,
+      "price": 12.99
   },
   {
       "menu_item": "Chicken Caesar Wrap",
@@ -47,7 +53,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": true,
       "vegetarian": false,
-      "gluten_free": false
+      "gluten_free": false,
+      "price": 10.99
   },
   {
       "menu_item": "Vegetable Stir Fry",
@@ -55,7 +62,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": false,
       "vegetarian": true,
-      "gluten_free": true
+      "gluten_free": true,
+      "price": 10.99
   },
   {
       "menu_item": "Salmon with Dill Sauce",
@@ -63,7 +71,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": true,
       "vegetarian": false,
-      "gluten_free": true
+      "gluten_free": true,
+      "price": 10.99
   },
   {
       "menu_item": "Mushroom Risotto",
@@ -71,7 +80,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": true,
       "vegetarian": true,
-      "gluten_free": false
+      "gluten_free": false,
+      "price": 10.99
   },
   {
       "menu_item": "Quinoa Tabbouleh",
@@ -79,7 +89,8 @@ const Menu = require('../models/Menu');
       "has_nuts": false,
       "has_dairy": false,
       "vegetarian": true,
-      "gluten_free": true
+      "gluten_free": true,
+      "price": 7.99
   },
   {
     "menu_item": "Grilled Portobello Burger",
@@ -87,7 +98,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": false,
     "vegetarian": true,
-    "gluten_free": false
+    "gluten_free": false,
+    "price": 11.99
 },
 {
     "menu_item": "Shrimp Scampi",
@@ -95,7 +107,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": true,
     "vegetarian": false,
-    "gluten_free": false
+    "gluten_free": false,
+    "price": 10.99
 },
 {
     "menu_item": "Maple Glazed Salmon",
@@ -103,7 +116,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": false,
     "vegetarian": false,
-    "gluten_free": true
+    "gluten_free": true,
+    "price": 16.99
 },
 {
     "menu_item": "Chicken Tikka Masala",
@@ -111,7 +125,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": true,
     "vegetarian": false,
-    "gluten_free": false
+    "gluten_free": false,
+    "price": 16.99
 },
 {
     "menu_item": "Falafel Wrap",
@@ -119,7 +134,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": false,
     "vegetarian": true,
-    "gluten_free": false
+    "gluten_free": false,
+    "price": 9.99
 },
 {
     "menu_item": "Spinach and Goat Cheese Salad",
@@ -127,7 +143,8 @@ const Menu = require('../models/Menu');
     "has_nuts": true,
     "has_dairy": true,
     "vegetarian": true,
-    "gluten_free": true
+    "gluten_free": true,
+    "price": 8.99
 },
 {
     "menu_item": "BBQ Pork Ribs",
@@ -135,7 +152,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": false,
     "vegetarian": false,
-    "gluten_free": false
+    "gluten_free": false,
+    "price": 15.99
 },
 {
     "menu_item": "Butternut Squash Soup",
@@ -143,7 +161,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": true,
     "vegetarian": true,
-    "gluten_free": true
+    "gluten_free": true,
+    "price": 8.99
 },
 {
     "menu_item": "Eggplant Parmesan",
@@ -151,7 +170,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": true,
     "vegetarian": true,
-    "gluten_free": false
+    "gluten_free": false,
+    "price": 14.99
 },
 {
     "menu_item": "Lemon Herb Grilled Chicken",
@@ -159,7 +179,8 @@ const Menu = require('../models/Menu');
     "has_nuts": false,
     "has_dairy": false,
     "vegetarian": false,
-    "gluten_free": true
+    "gluten_free": true,
+    "price": 14.99
 },
 {
   "menu_item": "Pesto Pasta Primavera",
@@ -167,7 +188,8 @@ const Menu = require('../models/Menu');
   "has_nuts": true,
   "has_dairy": true,
   "vegetarian": true,
-  "gluten_free": false
+  "gluten_free": false,
+  "price": 14.99
 },
 {
   "menu_item": "Steak Frites",
@@ -175,7 +197,8 @@ const Menu = require('../models/Menu');
   "has_nuts": false,
   "has_dairy": true,
   "vegetarian": false,
-  "gluten_free": true
+  "gluten_free": true,
+  "price" :17.99
 },
 {
   "menu_item": "Roasted Vegetable Quiche",
@@ -183,7 +206,8 @@ const Menu = require('../models/Menu');
   "has_nuts": false,
   "has_dairy": true,
   "vegetarian": true,
-  "gluten_free": false
+  "gluten_free": false,
+  "price": 10.99
 },
 {
   "menu_item": "Korean Bibimbap",
@@ -191,7 +215,8 @@ const Menu = require('../models/Menu');
   "has_nuts": false,
   "has_dairy": false,
   "vegetarian": false,
-  "gluten_free": false
+  "gluten_free": false,
+  "price": 13.99
 },
 {
   "menu_item": "Lamb Gyro",
@@ -199,7 +224,8 @@ const Menu = require('../models/Menu');
   "has_nuts": false,
   "has_dairy": true,
   "vegetarian": false,
-  "gluten_free": false
+  "gluten_free": false,
+  "price": 9.99
 }
 ]
 
