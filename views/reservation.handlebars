@@ -37,5 +37,28 @@
 
 <input type="text" name="notes" placeholder="notes" required>
 
+
+<!-- Below is a placeholder post request function provided to me by Andrew. In a later push I will be implementing this function in the js file.
+
+
+form.addEventListener('submit', async function(event) {
+  //gather data from form
+
+
+const resp = await fetch("/api/signup", {
+    method: "POST",
+    body: JSON.stringify({
+      fname: "gary",
+      lname: "almes"
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  const data = resp.json
+  console.log(data)
+})
+
+Header, reservations
 <button id="reservatonSubmit" type="submit">Submit</button>
 
