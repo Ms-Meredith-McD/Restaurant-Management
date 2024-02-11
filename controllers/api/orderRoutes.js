@@ -1,7 +1,7 @@
 //TODO GET is working but only has a single association.  Gotta revisit index.js
 
 const router = require('express').Router();
-const { Order, Customer, Menu } = require('../../models');
+const { Order, Customer, Menu, OrderMenu } = require('../../models');
 
 router.get('/', async (req, res) => {
       try {
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         },
         {
           model: Menu,
-          foreignKey: "menu_id"
+          as: "menu_order",
         },
       ],
     });
@@ -46,39 +46,35 @@ router.get('/:id', async (req, res) => {
   res.json(payload);
 });
 
-router.post('/', async (req, res) => {
-  const order = await Order.create(req.body);
-  let customerId = req.body.customerId
-  if (req.body.menuIds.length) {
-    const orderCustomerIdArr = req.body.menuIds.map(menu_id => {
-      return {       
-        customer_id: customerId,
-        menu_id,
-      }
-    })
-    const productTagIds = await Order.bulkCreate(orderCustomerIdArr);
-      res.status(200).json(productTagIds);
-  }
-})
 
 router.post('/', (req, res) => {
-  
+  let createdOrder;
+
   Order.create(req.body)
     .then((order) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.itemIds.length) {
-        const itemArr = req.body.itemsIds.map((menu_id) => {
-          return {
-            customer_id,
-            menu_id,
-          };
-        });
-        return OrderMenu.bulkCreate(itemArr);
-      }
-      // if no product tags, just respond
-      res.status(200).json(order);
+      createdOrder = order;
+
+      const customerID = req.body.customer_id;
+      const itemArr = req.body.itemIds.map((menu_id) => {
+        return {
+          customer_id: customerID,
+          menu_id,
+          order_id: order.id,
+        };
+      });
+
+      // Associate menu items with the order using create method
+      return OrderMenu.bulkCreate(itemArr, { order_id: order.id });
     })
-    .then((menuItemIds) => res.status(200).json(menuItemIds))
+    .then((menuItemIds) => {
+      // Combine the order and menu items in the response
+      const response = {
+        order: createdOrder,
+        menuItems: menuItemIds,
+      };
+
+      res.status(200).json(response);
+    })
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);

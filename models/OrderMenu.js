@@ -15,16 +15,7 @@ OrderMenu.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Order',
-        key: 'id'
-      }
-    },
-    menu_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
-      references: {
-        model: 'Menu',
+        model: 'order',
         key: 'id'
       }
     },

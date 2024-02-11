@@ -29,13 +29,17 @@ Menu.hasMany(Order,
 Order.hasMany(Menu,
     { foreignKey: 'menu_id' });
 
-    Menu.belongsToMany(Customer, {
+  Menu.belongsToMany(Customer, {
   through: {
     model: OrderMenu,
     unique: false
   },
   as: 'menu_customers'
 });
+Order.hasMany(OrderMenu, {
+  foreignKey: 'order_id',
+});
+
 // // customers belong to many menu items (through order)
 Customer.belongsToMany(Menu, {
   through: {
@@ -43,8 +47,30 @@ Customer.belongsToMany(Menu, {
     unique: false
   },
   as: 'customer_menu'
-})
+});
 
+Menu.belongsToMany(Customer, {
+  through: {
+    model: OrderMenu,
+    unique: false
+  },
+  as: 'menu_customer'
+});
+
+Menu.belongsToMany(Order, {
+  through: {
+    model: OrderMenu,
+    unique: false
+  },
+  as: 'menu_order'
+});
+// Order.belongsToMany(Menu, {
+//   through: {
+//     model: OrderMenu,
+//     unique: false
+//   },
+//   as: 'order_menu'
+// })
 module.exports = {
   Customer,
   Menu,
