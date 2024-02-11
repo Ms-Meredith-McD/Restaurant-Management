@@ -46,7 +46,6 @@ router.get('/:id', async (req, res) => {
   res.json(payload);
 });
 
-<<<<<<< HEAD
 
 router.post('/', (req, res) => {
   let createdOrder;
@@ -81,7 +80,6 @@ router.post('/', (req, res) => {
       res.status(400).json(err);
     });
 });
-=======
 router.post('/', async (req, res) => {
   const order = await Order.create(req.body);
   let customerId = req.body.customer_id
@@ -123,7 +121,6 @@ router.post('/', async (req, res) => {
 //       res.status(400).json(err);
 //     });
 // });
->>>>>>> e2725fb8d24ff8ed178da5381d22a6a58601241e
 
 // PUT update product
 // router.put('/:id', (req, res) => {

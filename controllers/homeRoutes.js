@@ -1,3 +1,7 @@
+//TODO 
+//add /about route
+
+
 
 const router = require('express').Router();
 const { Menu, Reservation, Order, Customer } = require('../models');
@@ -6,6 +10,11 @@ const withAuth = require('../utils/auth')
 // GET homepage
 router.get('/', async (req, res) => {
     res.render('homepage');
+});
+
+//GET about us page
+router.get('/about', async (req, res) => {
+    res.render('about-us');
 });
 
 //customer profile page, lists past reservations and orders
@@ -20,7 +29,7 @@ router.get('/login', (req, res) => {
 });
 
 // Profile page withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         //*********WILL NEED TO CHECK HOW SESSION IS STORING USER/CUSTOMER_ID */
@@ -70,7 +79,7 @@ router.get('/menu', async (req, res) => {
 });
 
 // GET one menu item
-router.get('/menu/:id', withAuth, async (req, res) => {
+router.get('/menu/:id', async (req, res) => {
     try {
         const menuData = await Menu.findByPk(req.params.id);
 
@@ -88,7 +97,7 @@ router.get('/menu/:id', withAuth, async (req, res) => {
 });
 
 // Order page, auth required, THIS PAGE SHOWS ALL ORDERS PLACED, NOT TO POST AN ORDER, THAT WILL BE DIFFERENT
-router.get('/order', withAuth, async (req, res) => {
+router.get('/order', async (req, res) => {
     try {
         //find all order items
         const orderData = await Order.findAll();
@@ -106,7 +115,7 @@ router.get('/order', withAuth, async (req, res) => {
 });
 
 // GET one order item
-router.get('/order/:id', withAuth, async (req, res) => {
+router.get('/order/:id', async (req, res) => {
     try {
         const orderData = await Order.findByPk(req.params.id);
 
@@ -124,7 +133,7 @@ router.get('/order/:id', withAuth, async (req, res) => {
 });
 
 // Customer page, auth required, THIS PAGE SHOWS ALL CUSTOMERS
-router.get('/customer', withAuth, async (req, res) => {
+router.get('/customer', async (req, res) => {
     try {
         //find all customer items
         const customerData = await Customer.findAll();
@@ -142,7 +151,7 @@ router.get('/customer', withAuth, async (req, res) => {
 });
 
 // GET one customer item
-router.get('/customer/:id', withAuth, async (req, res) => {
+router.get('/customer/:id', async (req, res) => {
     try {
         const customerData = await Customer.findByPk(req.params.id);
 
@@ -160,7 +169,7 @@ router.get('/customer/:id', withAuth, async (req, res) => {
 });
 
 // Reservation page, auth required, THIS PAGE SHOWS ALL RESERVATIONS, this will not post new reservations, that will be done on front end with fetch
-router.get('/reservation', withAuth, async (req, res) => {
+router.get('/reservation', async (req, res) => {
     try {
         //find all reservation items
         const reservationData = await Reservation.findAll();
@@ -170,7 +179,7 @@ router.get('/reservation', withAuth, async (req, res) => {
 //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('reservation', {
             reservation: reservation,
-            logged_in: true
+            logged_in: false
         });
     } catch (err) {
         res.status(500).json(err);
@@ -178,7 +187,7 @@ router.get('/reservation', withAuth, async (req, res) => {
 });
 
 // GET one reservation item
-router.get('/reservation/:id', withAuth, async (req, res) => {
+router.get('/reservation/:id', async (req, res) => {
     try {
         const reservationData = await Reservation.findByPk(req.params.id);
 

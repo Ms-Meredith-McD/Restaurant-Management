@@ -4,43 +4,43 @@
       &#127869 Our Menu
     </h2>
   </div>
-  {{#each menus as |menu|}}
-    <div class="dish col-md-5">
-      <p>
-        {{menu.id}}.
-        {{menu.menu_item}}.
-        {{menu.price}}
-      </p>
-      </p>
+  {{#each menu as |menu|}}
+  <div class="dish col-md-5">
+    <p>
+      {{menu.id}}.
+      {{menu.menu_item}}.
+      {{menu.price}}
+    </p>
+    </p>
     {{#if has_nuts}}
-      <p class="has-nuts">
-        Contains Nuts
-      </p>
+    <p class="has-nuts">
+      Contains Nuts
+    </p>
     {{/if}}
     </p>
     {{#if has_dairy}}
-      <p class="has_dairy">
-        Contains Dairy
-      </p>
+    <p class="has_dairy">
+      Contains Dairy
+    </p>
     {{/if}}
     </p>
     {{#if vegetarian}}
-      <p class="vegetarian">
-        Vegetarian Option
-      </p>
+    <p class="vegetarian">
+      Vegetarian Option
+    </p>
     {{/if}}
     </p>
     {{#if gluten_free}}
-      <p class="gluten_free">
-        Gluten Free Option
-      </p>
+    <p class="gluten_free">
+      Gluten Free Option
+    </p>
     {{/if}}
-    </div>
+  </div>
   {{/each}}
 </div>
 
-{{!-- In the class example for serialization here's the get call they have. 
-NOT SURE THIS IS RELEVANT 
+{{!-- In the class example for serialization here's the get call they have.
+NOT SURE THIS IS RELEVANT
 Will go in JS but putting it here for reference.
 LESSON 7
 
@@ -50,7 +50,7 @@ try {
 Search the database for a dish with an id that matches params
 const dishData = await Dish.findByPk(req.params.id);
 console.log(dishData)
-We use .get({ plain: true }) on the object to serialize it so that it only includes the data that we need. 
+We use .get({ plain: true }) on the object to serialize it so that it only includes the data that we need.
 const dish = dishData.get({ plain: true });
 Then, the 'dish' template is rendered and dish is passed into the template.
 res.render('dish', dish);
