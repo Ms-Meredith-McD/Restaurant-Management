@@ -115,7 +115,7 @@ router.get('/menu/:id', async (req, res) => {
 router.get('/order', async (req, res) => {
     try {
         //find all order items
-        const orderData = await Order.findAll();
+        const orderData = await Menu.findAll();
 
         const order = orderData.map(item => item.get({ plain: true }));
         //*********logged in set to true, only logged in can see this
