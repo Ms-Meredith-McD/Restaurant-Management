@@ -8,21 +8,21 @@ Need to discuss --}}
         {{#each order as |order|}}
         <div class="dish col-md-5">
             <p>
-                {{order.customer_id.name}}.
+                {{order.customer.name}}.
                 {{!-- ^^I want this to use the customer_id to pull customer.id How do we do that? --}}
             </p>
 
             <p>
-                {{order.menu_id.menu_item}}
+                {{order.menus.menu_item}}
                 {{!-- ^^same as above. I need to get into the menu object and pull the menu_item (name)
                 we will need to do this for multiple so maybe another each inside this each?
                 revisit monday. --}}
-                {{order.menu_id.qty}}
+                {{!-- {{order.menu_id.qty}} --}}
                 {{!-- ^^This doesn't exist yet but will --}}
             </p>
 
             <p>
-                {{order.total}}
+                {{!-- {{order.total}} --}}
                 {{!-- This doesn't exist yet. But maybe it should?
                 Could generate upon customer submitting order. Add to model. --}}
             </p>
