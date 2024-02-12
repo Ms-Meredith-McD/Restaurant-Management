@@ -189,51 +189,6 @@ li{
     word-spacing: 5px !important;
 }
 
-
-
-/*========================
-INTRO CONTAINER
-=========================*/
-.starter_container {
-    margin-top: -21px;
-    padding: 0;
-    min-width: 100%;
-    height: 100%;
-    background: url('../images/steak.jpg') no-repeat center center;
-    background-size: cover;
-    text-align: center;
-    background-position: center;  
-}
-.follow_container {
-    width: 100%;
-    /* position: absolute; */
-    top: 35%;
-    text-align: center;
-}
-.starter_follow {
-    display: inline-block;
-    width: 80%;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 0;
-}
-.top-title{
-    color: white;
-    font-family: 'Playball', cursive;
-    font-size: 120px;
-    font-weight: 400;
- }
-.second-title {
-    font-weight: lighter; 
-    font-size: 30px; 
-    font-style: italic; 
-    text-transform: capitalize;
-}
-
-.white{
-    color: white;
-}
-
 /* ========================
     IMAGE INTRO BANNER CONTENT
    =========================*/
@@ -276,13 +231,13 @@ INTRO CONTAINER
     background-size: cover;
     background-position: 70% 50%;
 }
- .featured.background_content{
+.featured.background_content{
     background: url('../images/featured.jpg') no-repeat center center; 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
- .pricing.background_content{
+.pricing.background_content{
     background: url('../images/pricing.jpg') no-repeat center center; 
     background-size: cover;
     background-position: center;
