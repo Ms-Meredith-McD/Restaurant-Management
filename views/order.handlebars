@@ -63,10 +63,11 @@
     </div>
     <div>
         <p>Tip</p>
-         <input type="text" name="orderTip" id="orderTip" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$0.00"> 
+         <input type="number" name="orderTip" id="orderTip" value="" data-type="currency" placeholder="$0.00"> 
         {{!-- ^^There's no currency input type in HTML.  This is a commonly used pattern. 
         Keep in mind it will be a string though.  May need to parseInt on the back end.
         This data isn't necessary to keep either for the purposes of our project - TP
+        pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" 
          --}}
     </div>
     <div>
