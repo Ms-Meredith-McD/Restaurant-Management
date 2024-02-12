@@ -13,20 +13,24 @@ form.addEventListener('submit', async function(event) {
     const reservationTime = document.querySelector(`select[name="reservedTime"]`).value;
     const notes = document.querySelector(`input[name="notes"]`).value;
 
-  const reservation = reservationDate + ' ' + reservationTime 
+    const reservationDateTime = `${reservationDate} ${reservationTime}`;
     
+    console.log(reservationDateTime)
+
+  let payload = {
+    party_size: tableSize,
+    reservation_datetime: reservationDateTime,
+    notes: notes,
+    customer_id: 3
+  }
 
   const resp = await fetch("/api/reservation", {
       method: "POST",
-      body: JSON.stringify({
-        party_size: tableSize,
-        reservation_datetime: reservation,
-        notes: notes,
-        customer_id: 3
-      }),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify(payload),
+
     })
     const data = await resp.json()
     console.log(data)
