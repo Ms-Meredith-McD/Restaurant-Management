@@ -31,53 +31,73 @@ document.addEventListener("DOMContentLoaded", function () {
         orderTotalElement.text(`$${total.toFixed(2)}`);
     }
 
+    // Attach event listener to quantity dropdown element using jQuery
     document.querySelectorAll('.itemQty').forEach(field => {
         field.addEventListener('change', updateOrderTotals);
     });
-    // Attach event listener to quantity dropdown element using jQuery
-    // $(".itemQty").on("change", updateOrderTotals);
+
+
 
     // Attach event listener to tip input element using jQuery
     orderTipElement.on("input", updateOrderTotals);
 
-    // Assume you have a form with an id="orderForm" for submitting the order
-    // const orderForm = $("#orderForm");
+
+
+
+
 
     orderForm.on('click', function (event) {
         event.preventDefault();
-        console.log("hi")})
+        let subtotal = 0;
+       const selectedItems = [];
 
-    // // Handle form submission
-    // orderForm.submit(function (event) {
-    //     event.preventDefault();
-    //         console.log("HI")})
-    //     // Collect order data and send it to the server using your preferred method (e.g., fetch)
-    //     const orderData = {
-    //         items: menu.map(item => {
-    //             return {
-    //                 menuItemId: item.id,
-    //                 quantity: parseInt($("#itemQty").val(), 10) || 0
-    //             };
-    //         }),
-    //         tip: parseFloat(orderTipElement.val()) || 0
-    //     };
+    // Iterate through each menu item
+    Array.from(document.querySelectorAll('.itemQty')).forEach(field => {
+        // const menuItemId = parseInt(field.dataset.menuItemId, 10);
+        const quantity = parseInt(field.value, 10) || 0;
+        const itemPrice = parseFloat(field.closest('.dish').querySelector('.orderPrice').textContent);
+        const orderItemName = field.closest('.dish').querySelector('.orderItemName').textContent;
+        subtotal += itemPrice * quantity;
 
-    //     // Assuming you have a server endpoint for handling orders
-    //     fetch("/api/orders", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(orderData)
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // Handle the response from the server (e.g., display a success message)
-    //         console.log(data);
-    //     })
-    //     .catch(error => {
-    //         // Handle errors
-    //         console.error("Error submitting order:", error);
-    //     });
-    // });
+        if (quantity > 0) {
+            // Only include items with quantity greater than zero
+            selectedItems.push({
+                menu_name: orderItemName,
+                quantity: quantity
+            });
+        }
+    });
+
+    const taxRate = 0.06875; // 6.875%
+    const tax = subtotal * taxRate;
+    const tip = parseFloat(orderTipElement.val()) || 0;
+    const total = subtotal + tax + tip;
+
+    // Collect order data
+    const orderData = {
+        items: selectedItems,
+        subtotal: subtotal.toFixed(2),
+        tax: tax.toFixed(2),
+        tip: tip.toFixed(2),
+        total: total.toFixed(2)
+    };
+console.log(orderData);
+    // Assuming you have a server endpoint for handling orders
+    fetch("/api/orders", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response from the server (e.g., display a success message)
+        console.log(data);
+    })
+    .catch(error => {
+        // Handle errors
+        console.error("Error submitting order:", error);
+    });
+});
 });
