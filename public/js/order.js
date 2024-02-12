@@ -12,10 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Iterate through each menu item
         document.querySelectorAll('.itemQty').forEach(item => {
-            const quantity = parseInt(document.querySelector('.itemQty').inputValue, 10) || 0;
-            subtotal += parseFloat(document.querySelector('.orderPrice').textContent) * quantity;
-            console.log(parseFloat(document.querySelector('.orderPrice').textContent))
-            console.log(subtotal);
+            const quantity = parseInt(item.value, 10) || 0;
+            const itemPrice = parseFloat(item.closest('.dish').querySelector('.orderPrice').textContent)
+            subtotal += itemPrice * quantity
         });
 
 
