@@ -2,13 +2,49 @@ const express = require('express');
 const router = express.Router();
 const Customer = require('../../models/Customer');
 
+router.post('/', async (req, res) => {
+    try {
+      const customerData = await Customer.create(req.body);
+  
+      req.session.save(() => {
+        req.session.user_id = customerData.id;
+        req.session.logged_in = true;
+        res.status(200).json(customerData);
+      });
+    } catch (err) {
+      res.status(400).json(err);
+      console.log(err)
+    }
+  });
 
-router.post('/', (req, res) => {
-    const newCustomerData = req.body;
-    Customer.create(newCustomerData)
-        .then(customer => res.status(201).json(customer))
-        .catch(err => res.status(500).json({ error: err.message }));
-});
+router.post('/login', async (req, res) => {
+    try {
+      const customerData = await Customer.findOne({ where: { email: req.body.email } });
+  
+      if (!customerData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+      const validPassword = await userData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+      req.session.save(() => {
+        req.session.user_id = customerData.id;
+        req.session.logged_in = true;
+        
+        res.json({ user: customerData, message: 'You are now logged in!' });
+      });
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
 
 
 router.get('/', (req, res) => {
