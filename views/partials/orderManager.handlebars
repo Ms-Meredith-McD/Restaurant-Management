@@ -1,0 +1,34 @@
+{{!-- This is where the manager would see all orders?
+What is this used for?
+I'll build it like reso so the mgr can delete them out/mark complete.
+Need to discuss --}}
+<div class="order-manager">
+    <div class="card-header col-md-10">
+
+        {{#each order as |order|}}
+        <div class="dish col-md-5">
+            <p>
+                {{order.customer_id.name}}.
+                {{!-- ^^I want this to use the customer_id to pull customer.id How do we do that? --}}
+            </p>
+
+            <p>
+                {{order.menu_id.menu_item}}
+                {{!-- ^^same as above. I need to get into the menu object and pull the menu_item (name)
+                we will need to do this for multiple so maybe another each inside this each?
+                revisit monday. --}}
+                {{order.menu_id.qty}}
+                {{!-- ^^This doesn't exist yet but will --}}
+            </p>
+
+            <p>
+                {{order.total}}
+                {{!-- This doesn't exist yet. But maybe it should?
+                Could generate upon customer submitting order. Add to model. --}}
+            </p>
+        </div>
+         <button type="button" id="delete-btn" data-id="{{reservation.id}}">Delete Reservation</button>
+         <br><br>
+        {{/each}}
+    </div>
+</div>

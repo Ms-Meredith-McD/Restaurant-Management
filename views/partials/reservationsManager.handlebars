@@ -1,4 +1,4 @@
-<h2>Welcome to the manager view</h2>
+
 <p>See below to view all booked reservations</p>
 
 {{#each reservation as |reservation|}}
@@ -10,7 +10,7 @@
     <p>Customer Id: {{reservation.customer_id}}</p></br>
     <button type="button" id="delete-btn" data-id="{{reservation.id}}">Delete Reservation</button>
 </div>
-<br>
+<br><br>
 {{/each}}
 
 {{!-- Once we have the route setup for manager reservations I can test this further. Currently this should list each reservation after another.
