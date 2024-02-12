@@ -52,11 +52,11 @@
         </div>
     </div>
     {{/each}}
-    <div>
+</div>
+    <div class="row">
         <p>Subtotal</p>
         <p id="orderSubtotal"></p>
         {{!-- ^^giving the above an id so it can be populated.  Item price * quantity SUM all formula in JS --}}
-    </div>
      <div>
         <p>Tax</p>
         <p id="orderTax"></p>
@@ -80,6 +80,7 @@
         <input type="submit" id="orderForm" value="Submit" />
         {{!-- <button class="btn btn-primary" id="orderForm" type="submit">Submit</button> --}}
     </div>
+</div>
 </div>
 
 <script src="js/order.js"></script>
