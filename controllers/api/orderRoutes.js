@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         },
         {
           model: Menu,
-          as: "menu_order",
+          through: OrderMenu
         },
       ],
     });
@@ -47,57 +47,57 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
-  let createdOrder;
+// router.post('/', (req, res) => {
+//   let createdOrder;
 
-  Order.create(req.body)
-    .then((order) => {
-      createdOrder = order;
+//   Order.create(req.body)
+//     .then((order) => {
+//       createdOrder = order;
 
-      const customerID = req.body.customer_id;
-      const itemArr = req.body.itemIds.map((menu_id) => {
-        return {
-          customer_id: customerID,
-          menu_id,
-          order_id: order.id,
-        };
-      });
+//       const customerID = req.body.customer_id;
+//       const itemArr = req.body.itemIds.map((menu_id) => {
+//         return {
+//           customer_id: customerID,
+//           menu_id,
+//           order_id: order.id,
+//         };
+//       });
 
       // Associate menu items with the order using create method
-      return OrderMenu.bulkCreate(itemArr, { order_id: order.id });
-    })
-    .then((menuItemIds) => {
-      // Combine the order and menu items in the response
-      const response = {
-        order: createdOrder,
-        menuItems: menuItemIds,
-      };
+//       return OrderMenu.bulkCreate(itemArr, { order_id: order.id });
+//     })
+//     .then((menuItemIds) => {
+//       // Combine the order and menu items in the response
+//       const response = {
+//         order: createdOrder,
+//         menuItems: menuItemIds,
+//       };
 
-      res.status(200).json(response);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-});
+//       res.status(200).json(response);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
 router.post('/', async (req, res) => {
-  const order = await Order.create(req.body);
   let customerId = req.body.customer_id
+  const order = await Order.create({ customer_id: customerId });
+console.log(req.body.menu_ids)
   // let orderId = order.id
   if (req.body.menu_ids.length) {
     const orderCustomerIdArr = req.body.menu_ids.map(menu_id => {
       return {       
-        customer_id: customerId,
         order_id: order.id,
         menu_id,
       }
     })
     const orderMenuRecords = await OrderMenu.bulkCreate(orderCustomerIdArr);
     // const menuIds = orderMenuRecords.map(record => record.menu_id)
-      res.status(200).json(orderMenuRecords);
+    res.status(200).json(orderMenuRecords);
   }
 })
-// router.post('/', async (req, res) => {
+// router.post('/', async (req, res) => { 
 //   const order = await Order.create(req.body);
 //   let customerId = req.body.customer_id
 //   // let orderId = order.id
