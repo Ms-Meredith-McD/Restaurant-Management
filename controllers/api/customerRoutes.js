@@ -2,50 +2,50 @@ const express = require('express');
 const router = express.Router();
 const Customer = require('../../models/Customer');
 
-
 router.post('/', async (req, res) => {
     try {
-        const customerData = await Customer.create(req.body);
-
-        req.session.save(() => {
-            req.session.user_id = customerData.id;
-            req.session.logged_in = true;
-
-            res.status(200).json(customerData);
-        });
+      const customerData = await Customer.create(req.body);
+  
+      req.session.save(() => {
+        req.session.user_id = customerData.id;
+        req.session.logged_in = true;
+        res.status(200).json(customerData);
+      });
     } catch (err) {
-        res.status(400).json(err);
+      res.status(400).json(err);
+      console.log(err)
     }
-});
+  });
 
 router.post('/login', async (req, res) => {
     try {
-        const customerData = await Customer.findOne({ where: { email: req.body.email } });
-
-        if (!customerData) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password, please try again' });
-            return;
-        }
-        const validPassword = await customerData.checkPassword(req.body.password);
-
-        if (!validPassword) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password, please try again' });
-            return;
-        }
-        req.session.save(() => {
-            req.session.user_id = customerData.id;
-            req.session.logged_in = true;
-
-            res.json({ user: customerData, message: 'You are now logged in!' });
-        });
+      const customerData = await Customer.findOne({ where: { email: req.body.email } });
+  
+      if (!customerData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+      const validPassword = await userData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+      req.session.save(() => {
+        req.session.user_id = customerData.id;
+        req.session.logged_in = true;
+        
+        res.json({ user: customerData, message: 'You are now logged in!' });
+      });
     } catch (err) {
-        res.status(400).json(err);
+      res.status(400).json(err);
     }
-});
+  });
+
 
 router.get('/', (req, res) => {
     Customer.findAll()
@@ -94,16 +94,6 @@ router.delete('/:Id', (req, res) => {
         })
         .then(() => res.status(204).end())
         .catch(err => res.status(500).json({ error: err.message }));
-});
-
-router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
 });
 
 module.exports = router;
