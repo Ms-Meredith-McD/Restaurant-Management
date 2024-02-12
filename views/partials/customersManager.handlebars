@@ -1,0 +1,12 @@
+<p>See below to view all customers</p>
+
+{{#each customer as |customer|}}
+<div>
+    <p>Customer ID Number: {{customer.id}}</p>
+    <p>Customer Name: {{customer.name}}</p>
+    <p>Customer Email: {{customer.email}}</p>
+    <p>Is this customer a manager?: {{customer.is_manager}}</p>
+    <button type="button" id="delete-btn" data-id="{{customer.id}}">Remove Customer</button>
+</div>
+<br><br>
+{{/each}}
