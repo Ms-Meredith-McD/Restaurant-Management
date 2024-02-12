@@ -2,7 +2,6 @@
 //add /about route
 
 
-
 const router = require('express').Router();
 const { Menu, Reservation, Order, Customer } = require('../models');
 const withAuth = require('../utils/auth')
@@ -15,6 +14,22 @@ router.get('/', async (req, res) => {
 //GET about us page
 router.get('/about-us', async (req, res) => {
     res.render('about-us');
+});
+
+//GET Manager hub
+router.get('/manager', async (req, res) => {
+    const orderData = await Order.findAll();
+    const order = orderData.map(item => item.get({ plain: true }));
+    const reservationData = await Reservation.findAll();
+    const reservation = reservationData.map(item => item.get({ plain: true }));
+    const customerData = await Customer.findAll();
+    const customer = customerData.map(item => item.get({ plain: true }));
+    res.render('manager', {
+        order: order,
+        reservation: reservation,
+        customer: customer,
+        logged_in: false
+    })
 });
 
 //customer profile page, lists past reservations and orders
@@ -62,13 +77,13 @@ router.get('/profile', async (req, res) => {
 router.get('/menu', async (req, res) => {
     try {
         //find all menu items
-        const menuData = await Menu.findAll( {
-            attributes: { exclude: ['id']}
+        const menuData = await Menu.findAll({
+
         });
 
         const menu = menuData.map(item => item.get({ plain: true }));
-//*********logged in set to false, ALL CAN SEE MENU NOW */
-//******THIS WILL NEED TO BE TESTED, menu: menu may cause issues since this is now an arraty */
+        //*********logged in set to false, ALL CAN SEE MENU NOW */
+        //******THIS WILL NEED TO BE TESTED, menu: menu may cause issues since this is now an arraty */
         res.render('menu', {
             menu: menu,
             logged_in: false
@@ -83,8 +98,8 @@ router.get('/menu/:id', async (req, res) => {
     try {
         const menuData = await Menu.findByPk(req.params.id);
 
-        if(!menuData) {
-            res.render('menu', {error: "Menu item not found!"});
+        if (!menuData) {
+            res.render('menu', { error: "Menu item not found!" });
             return
         }
 
@@ -103,8 +118,8 @@ router.get('/order', async (req, res) => {
         const orderData = await Menu.findAll();
 
         const order = orderData.map(item => item.get({ plain: true }));
-//*********logged in set to true, only logged in can see this
-//******THIS WILL NEED TO BE TESTED, order:order may cause issues since this is now an array */
+        //*********logged in set to true, only logged in can see this
+        //******THIS WILL NEED TO BE TESTED, order:order may cause issues since this is now an array */
         res.render('order', {
             order: order,
             logged_in: false
@@ -119,8 +134,8 @@ router.get('/order/:id', async (req, res) => {
     try {
         const orderData = await Order.findByPk(req.params.id);
 
-        if(!orderData) {
-            res.render('order', {error: "Order not found!"});
+        if (!orderData) {
+            res.render('order', { error: "Order not found!" });
             return
         }
 
@@ -139,8 +154,8 @@ router.get('/customer', async (req, res) => {
         const customerData = await Customer.findAll();
 
         const customer = customerData.map(item => item.get({ plain: true }));
-//*********logged in set to true, only logged in can see this
-//******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
+        //*********logged in set to true, only logged in can see this
+        //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('customer', {
             customer: customer,
             logged_in: true
@@ -155,8 +170,8 @@ router.get('/customer/:id', async (req, res) => {
     try {
         const customerData = await Customer.findByPk(req.params.id);
 
-        if(!customerData) {
-            res.render('customer', {error: "Customer not found!"});
+        if (!customerData) {
+            res.render('customer', { error: "Customer not found!" });
             return
         }
 
@@ -175,8 +190,8 @@ router.get('/reservation', async (req, res) => {
         const reservationData = await Reservation.findAll();
 
         const reservation = reservationData.map(item => item.get({ plain: true }));
-//*********logged in set to true, only logged in can see this
-//******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
+        //*********logged in set to true, only logged in can see this
+        //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('reservation', {
             reservation: reservation,
             logged_in: false
@@ -191,40 +206,13 @@ router.get('/reservation/:id', async (req, res) => {
     try {
         const reservationData = await Reservation.findByPk(req.params.id);
 
-        if(!reservationData) {
-            res.render('reservation', {error: "Reservation not found!"});
+        if (!reservationData) {
+            res.render('reservation', { error: "Reservation not found!" });
             return
         }
 
         const reservation = reservationData.get({ plain: true });
         res.render('reservation', { reservation });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
-
-// GET one gallery
-router.get('/gallery/:id', async (req, res) => {
-    try {
-        const dbGalleryData = await Gallery.findByPk(req.params.id, {
-            include: [
-                {
-                    model: Painting,
-                    attributes: [
-                        'id',
-                        'title',
-                        'artist',
-                        'exhibition_date',
-                        'filename',
-                        'description',
-                    ],
-                },
-            ],
-        });
-
-        const gallery = dbGalleryData.get({ plain: true });
-        res.render('gallery', { gallery });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -243,4 +231,5 @@ menu--DONE
 orders--DONE
 customers--DONE
 reservation--DONE
+manager
 */
