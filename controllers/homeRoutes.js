@@ -18,7 +18,13 @@ router.get('/about-us', async (req, res) => {
 
 //GET Manager hub
 router.get('/manager', async (req, res) => {
-    const orderData = await Order.findAll();
+    const orderData = await Order.findAll({
+        include: [{
+            model: Customer,
+            attributes: ['name']
+        }]
+    });
+
     const order = orderData.map(item => item.get({ plain: true }));
     const reservationData = await Reservation.findAll();
     const reservation = reservationData.map(item => item.get({ plain: true }));
@@ -113,7 +119,9 @@ router.get('/menu/:id', async (req, res) => {
 
 // Order page, auth required, THIS PAGE SHOWS ALL ORDERS PLACED, NOT TO POST AN ORDER, THAT WILL BE DIFFERENT
 router.get('/order', async (req, res) => {
+    
     try {
+        
         //find all order items
         const orderData = await Menu.findAll();
 

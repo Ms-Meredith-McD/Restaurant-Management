@@ -81,22 +81,28 @@ router.get('/:id', async (req, res) => {
 //     });
 // });
 router.post('/', async (req, res) => {
-  let customerId = req.body.customer_id
-  const order = await Order.create({ customer_id: customerId });
-console.log(req.body.menu_ids)
-  // let orderId = order.id
-  if (req.body.menu_ids.length) {
-    const orderCustomerIdArr = req.body.menu_ids.map(menu_id => {
-      return {       
-        order_id: order.id,
-        menu_id,
-      }
-    })
-    const orderMenuRecords = await OrderMenu.bulkCreate(orderCustomerIdArr);
-    // const menuIds = orderMenuRecords.map(record => record.menu_id)
-    res.status(200).json(orderMenuRecords);
+  try {
+      const orderData = req.body;
+      // ... (customer_id logic)
+      const customerId = req.session.user_id;
+      console.log('Session:', req.session);
+      // Create a new order in the database
+      const newOrder = await Order.create({
+          customer_id: customerId,
+          subtotal: parseFloat(orderData.subtotal),
+          tax: parseFloat(orderData.tax),
+          tip: parseFloat(orderData.tip),
+          total: parseFloat(orderData.total),
+          items: orderData.items,
+      });
+
+      await newOrder.save();
+      res.status(201).json({ message: 'Order placed successfully', order: newOrder.toJSON() });
+  } catch (error) {
+      console.error('Error placing order:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
   }
-})
+});
 // router.post('/', async (req, res) => { 
 //   const order = await Order.create(req.body);
 //   let customerId = req.body.customer_id

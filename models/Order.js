@@ -21,13 +21,24 @@ Order.init(
             key: 'id',
             },
         },
-        // menu_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //     model: 'menu',
-        //     key: 'id',
-        //     },
-        // },
+        subtotal: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false,
+        }, tax: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false,
+        }, tip: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false,
+        }, total: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false,
+        },
+        items: {
+            type: DataTypes.JSON,
+            allowNull: true,
+        },
+        
     },
     
     {
