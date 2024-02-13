@@ -4,7 +4,7 @@ const sequelize = require('../config/connection');
 
 class Customer extends Model {
     checkPassword(loginPw) {
-        return bcrypt.compareSync(loginPw, this.password);
+        return bcrypt.compare(loginPw, this.password);
     }
 }
 
@@ -32,7 +32,7 @@ Customer.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [5],
+                len: [1],
             },
         },
         is_manager: {

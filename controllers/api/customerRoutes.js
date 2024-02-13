@@ -3,18 +3,18 @@ const router = express.Router();
 const Customer = require('../../models/Customer');
 const bcrypt = require('bcrypt');
 
+//Sign up path
 router.post('/', async (req, res) => {
   try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const customerData = await Customer.create({
+          name: req.body.name,
           email: req.body.email,
-          password: hashedPassword
+          password: req.body.password
       });
 
       req.session.save(() => {
           req.session.user_id = customerData.id;
           req.session.logged_in = true;
-
           res.status(200).json(customerData);
       });
   } catch (err) {
@@ -22,55 +22,75 @@ router.post('/', async (req, res) => {
     console.log(err)
   }
 });
-
-router.post('/login', async (req, res) => {
-  try {
-    const customerData = await Customer.findOne({ where: { email: req.body.email } });
-
-    if (!customerData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-    req.session.save(() => {
-      req.session.user_id = customerData.id;
-      req.session.logged_in = true;
-      
-      res.json({ user: customerData, message: 'You are now logged in!' });
-    });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.post('/', async (req, res) => {
-    try {
-      const customerData = await Customer.create(req.body);
+//Signup path
+// router.post('/', async (req, res) => {
+//   console.log('signup route')
+//     try {
+//       const customerData = await Customer.create(req.body);
   
-      req.session.save(() => {
-        req.session.customer_id = customerData.id;
-        req.session.logged_in = true;
-        res.status(200).json(customerData);
-      });
-    } catch (err) {
-      res.status(400).json(err);
-      console.log(err)
-    }
-  });
+//       req.session.save(() => {
+//         req.session.customer_id = customerData.id;
+//         req.session.logged_in = true;
+//         res.status(200).json(customerData);
+//       });
+//     } catch (err) {
+//       res.status(400).json(err);
+//       console.log(err)
+//     }
+//   });
 
+// router.post('/login', async (req, res) => {
+//   try {
+//     const customerData = await Customer.findOne({ where: { email: req.body.email } });
+
+//     if (!customerData) {
+//       res
+//         .status(400)
+//         .json({ message: 'Incorrect email or password, please try again' });
+//       return;
+//     }
+//     const validPassword = await userData.checkPassword(req.body.password);
+
+//     if (!validPassword) {
+//       res
+//         .status(400)
+//         .json({ message: 'Incorrect email or password, please try again' });
+//       return;
+//     }
+//     req.session.save(() => {
+//       req.session.user_id = customerData.id;
+//       req.session.logged_in = true;
+      
+//       res.json({ user: customerData, message: 'You are now logged in!' });
+//     });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
+//Signup path
+// router.post('/', async (req, res) => {
+//   console.log('signup route')
+//     try {
+//       const customerData = await Customer.create(req.body);
+  
+//       req.session.save(() => {
+//         req.session.customer_id = customerData.id;
+//         req.session.logged_in = true;
+//         res.status(200).json(customerData);
+//       });
+//     } catch (err) {
+//       res.status(400).json(err);
+//       console.log(err)
+//     }
+//   });
+
+//Login path
 router.post('/login', async (req, res) => {
+  console.log(req.body)
     try {
       const customerData = await Customer.findOne({ where: { email: req.body.email } });
-  
+      
       if (!customerData) {
         res
           .status(400)
@@ -78,7 +98,7 @@ router.post('/login', async (req, res) => {
         return;
       }
       const validPassword = await customerData.checkPassword(req.body.password);
-  
+      console.log(validPassword)
       if (!validPassword) {
         res
           .status(400)
@@ -89,13 +109,24 @@ router.post('/login', async (req, res) => {
         req.session.customer_id = customerData.id;
         req.session.logged_in = true;
         
-        res.json({ user: customerData, message: 'You are now logged in!' });
+        res.json({ user: customerData.name, message: 'You are now logged in!' });
       });
     } catch (err) {
       res.status(400).json(err);
     }
   });
 
+  //Logout path
+router.post('/logout', (req, res) => {
+  // When the user logs out, the session is destroyed
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 router.get('/', (req, res) => {
     Customer.findAll()
