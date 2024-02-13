@@ -1,16 +1,26 @@
 
 const router = require('express').Router();
-const { Menu, Reservation, Order, Customer } = require('../models');
+const { Menu, Cocktail, Reservation, Order, Customer } = require('../models');
 const withAuth = require('../utils/auth')
 
 // GET homepage
 router.get('/', async (req, res) => {
-    res.render('homepage');
+    res.render('homepage', {
+        logged_in: req.session.logged_in
+    });
 });
+
+// router.get('/', async (req, res) => {
+//     res.render('homepage', {
+//         logged_in: req.session.logged_in
+//     });
+// });
 
 //GET about us page
 router.get('/about-us', async (req, res) => {
-    res.render('about-us');
+    res.render('about-us', {
+        logged_in: req.session.logged_in
+    });
 });
 
 router.get('/thank-you', async (req, res) => {
@@ -23,7 +33,7 @@ router.get('/thank-you', async (req, res) => {
     const order = orderData.get({ plain: true });
     res.render('thank-you', {
         order: order,
-        logged_in: true
+        logged_in: req.session.logged_in
     })
 });
 
@@ -45,7 +55,7 @@ router.get('/manager', async (req, res) => {
         order: order,
         reservation: reservation,
         customer: customer,
-        logged_in: false
+        logged_in: req.session.logged_in
     })
 });
 
@@ -58,7 +68,9 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('login');
+    res.render('login', {
+        logged_in: req.session.logged_in
+    });
 });
 
 // Profile page withAuth middleware to prevent access to route
@@ -84,7 +96,7 @@ router.get('/profile', async (req, res) => {
 
         res.render('profile', {
             ...customer,
-            logged_in: true
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -104,7 +116,7 @@ router.get('/menu', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, menu: menu may cause issues since this is now an arraty */
         res.render('menu', {
             menu: menu,
-            logged_in: false
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -122,7 +134,7 @@ router.get('/menu/:id', async (req, res) => {
         }
 
         const menu = menuData.get({ plain: true });
-        res.render('menu', { menu });
+        res.render('menu', { menu, logged_in: req.session.logged_in });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -142,7 +154,7 @@ router.get('/order', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, order:order may cause issues since this is now an array */
         res.render('order', {
             order: order,
-            logged_in: false
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -160,7 +172,7 @@ router.get('/order/:id', async (req, res) => {
         }
 
         const order = orderData.get({ plain: true });
-        res.render('order', { order });
+        res.render('order', { order, logged_in: req.session.logged_in });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -178,7 +190,7 @@ router.get('/customer', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('customer', {
             customer: customer,
-            logged_in: true
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -196,7 +208,7 @@ router.get('/customer/:id', async (req, res) => {
         }
 
         const customer = customerData.get({ plain: true });
-        res.render('customer', { customer });
+        res.render('customer', { customer, logged_in: req.session.logged_in });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -214,7 +226,7 @@ router.get('/reservation', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('reservation', {
             reservation: reservation,
-            logged_in: false
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -232,9 +244,26 @@ router.get('/reservation/:id', async (req, res) => {
         }
 
         const reservation = reservationData.get({ plain: true });
-        res.render('reservation', { reservation });
+        res.render('reservation', { reservation, logged_in: req.session.logged_in });
     } catch (err) {
         console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.get('/cocktail', async (req, res) => {
+    try {
+        
+        const cocktailData = await Cocktail.findAll({
+
+        });
+
+        const cocktail = cocktailData.map(item => item.get({ plain: true }));
+        res.render('cocktail', {
+            cocktail: cocktail,
+            logged_in: req.session.logged_in,
+        });
+    } catch (err) {
         res.status(500).json(err);
     }
 });
