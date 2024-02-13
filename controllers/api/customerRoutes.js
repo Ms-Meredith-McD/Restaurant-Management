@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
       const customerData = await Customer.create(req.body);
   
       req.session.save(() => {
-        req.session.user_id = customerData.id;
+        req.session.customer_id = customerData.id;
         req.session.logged_in = true;
         res.status(200).json(customerData);
       });
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
           .json({ message: 'Incorrect email or password, please try again' });
         return;
       }
-      const validPassword = await userData.checkPassword(req.body.password);
+      const validPassword = await customerData.checkPassword(req.body.password);
   
       if (!validPassword) {
         res
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
         return;
       }
       req.session.save(() => {
-        req.session.user_id = customerData.id;
+        req.session.customer_id = customerData.id;
         req.session.logged_in = true;
         
         res.json({ user: customerData, message: 'You are now logged in!' });
