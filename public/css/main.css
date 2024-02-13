@@ -196,7 +196,7 @@ span
     NAV
 =========================*/
 div#bs-example-navbar-collapse-1 {
-    height: 368px;
+    height: 380px;
     overflow: hidden;
     text-align: center;
     text-decoration: none !important;
@@ -218,7 +218,7 @@ nav {
 li {
     color: white !important;
     /*padding-left: 10px;*/
-    word-spacing: 5px !important;
+    /* word-spacing: 5px !important; */
 }
 
 /*========================
@@ -922,4 +922,14 @@ MEDIA QUERIE DESKTOP
 .no-bullets {
     color: white;
     list-style-type: none;
+    padding-bottom: 50px;
+}
+
+#contact, description_content, #footer-nav {
+    height: 80px;
+}
+
+li {
+    padding: 0;
+    margin: 0 !important;
 }
