@@ -1,6 +1,3 @@
-//TODO 
-//add /about route
-
 
 const router = require('express').Router();
 const { Menu, Reservation, Order, Customer } = require('../models');
@@ -16,17 +13,31 @@ router.get('/about-us', async (req, res) => {
     res.render('about-us');
 });
 
+router.get('/thank-you', async (req, res) => {
+    const orderData = await Order.findOne({
+        order: [['id', 'DESC']],
+        include: [{
+            model: Customer,
+        }]
+    });
+    const order = orderData.get({ plain: true });
+    res.render('thank-you', {
+        order: order,
+        logged_in: true
+    })
+});
+
 //GET Manager hub
 router.get('/manager', async (req, res) => {
     const orderData = await Order.findAll({
         include: [{
             model: Customer,
-            attributes: ['name']
         }]
-    });
-
+    }); 
     const order = orderData.map(item => item.get({ plain: true }));
-    const reservationData = await Reservation.findAll();
+    const reservationData = await Reservation.findAll({
+        order: [['reservation_datetime', 'ASC']],
+    })
     const reservation = reservationData.map(item => item.get({ plain: true }));
     const customerData = await Customer.findAll();
     const customer = customerData.map(item => item.get({ plain: true }));
@@ -40,6 +51,7 @@ router.get('/manager', async (req, res) => {
 
 //customer profile page, lists past reservations and orders
 router.get('/login', (req, res) => {
+    
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
         //*********REDIRECTS TO HOMEPAGE */
