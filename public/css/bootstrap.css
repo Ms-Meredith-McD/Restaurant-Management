@@ -6,6 +6,10 @@
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
+#contact {
+  padding: 40px;
+}
+
 article,
 aside,
 details,
