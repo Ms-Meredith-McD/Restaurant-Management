@@ -84,7 +84,7 @@ router.post('/', async (req, res) => {
   try {
       const orderData = req.body;
       // ... (customer_id logic)
-      const customerId = req.session.user_id;
+      const customerId = req.session.customer_id;
       console.log('Session:', req.session);
       // Create a new order in the database
       const newOrder = await Order.create({

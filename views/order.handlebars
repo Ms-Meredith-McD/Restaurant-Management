@@ -1,43 +1,46 @@
+<style>
+  .dish {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
+   .card-header {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+   }
+</style>
+
+{{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
+
 <div class="order-container">
-    <div class="card-header col-md-10">
+    <div class="card-header text-center">
         <h2>
-            &#127869 Place Order for Pick-Up
+            Place Order for Pick-Up
         </h2>
     </div>
+     <div class="row">
     {{#each order as |order|}}
-    <div class="dish col-md-5">
-        <p>
-            <div class="orderItemName">{{order.menu_item}}</div>
-            <div class="orderPrice">{{order.price}}</div>
-        </p>
-        </p>
-        {{#if has_nuts}}
-        <p class="has-nuts">
-            Contains Nuts
-        </p>   
+    <div class="col-md-4 dish mx-auto text-center">
+      <!-- col-md-4: Each card will take up 4 columns on medium and larger screens -->
+      <p class="item-and-price">
+        <div class="orderItemName">{{order.menu_item}}</div>
+        <div class="orderPrice">{{order.price}}</div>
+      </p>
+      <p class="additional-info">
+        {{#if order.has_nuts}}
+          <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
         {{/if}}
-        </p>
-        {{#if has_dairy}}
-        <p class="has_dairy">
-            Contains Dairy
-        </p>
+        {{#if order.has_dairy}}
+          <span class="info">Contains Dairy</span>&nbsp;&nbsp;&nbsp;
         {{/if}}
-        </p>
-        {{#if vegetarian}}
-        <p class="vegetarian">
-            Vegetarian Option
-        </p>
+        {{#if order.vegetarian}}
+          <span class="info">Vegetarian Option</span>&nbsp;&nbsp;&nbsp;
         {{/if}}
-        </p>
-        {{#if gluten_free}}
-        <p class="gluten_free">
-            Gluten Free Option
-        </p>
+        {{#if order.gluten_free}}
+          <span class="info">Gluten Free Option</span>&nbsp;&nbsp;&nbsp;
         {{/if}}
-        <div>
-            <label for="itemQty">Quantity:</label>
-            <select class="itemQty" name="itemQty" required>
-                <option value="null">0</option>
+      </p>
+      <div>
+        <label for="itemQty">Quantity:</label>
+        <select class="itemQty" name="itemQty" required>
+          <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -48,12 +51,12 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
-            </select>
-        </div>
+        </select>
+      </div>
     </div>
     {{/each}}
 </div>
-    <div class="row">
+    <div class="row text-center">
         <p>Subtotal</p>
         <p id="orderSubtotal"></p>
         {{!-- ^^giving the above an id so it can be populated.  Item price * quantity SUM all formula in JS --}}
@@ -75,7 +78,6 @@
         <input type="submit" id="orderForm" value="Submit" />
         {{!-- <button class="btn btn-primary" id="orderForm" type="submit">Submit</button> --}}
     </div>
-</div>
 </div>
 
 <script src="js/order.js"></script>
