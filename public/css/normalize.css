@@ -30,6 +30,10 @@ body {
  * Correct `block` display not defined for `main` in IE 11.
  */
 
+#contact {
+  padding: 40px;
+}
+
 article,
 aside,
 details,

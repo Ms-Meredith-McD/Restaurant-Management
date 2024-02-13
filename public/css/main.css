@@ -12,6 +12,11 @@ Text Domain: restaurant
 /*========================
 GLOBAL
 =========================*/
+
+#contact {
+    padding: 40px;
+}
+
 h1 {
     font-size: 37px;
     font-weight: 900;
@@ -343,6 +348,8 @@ IMAGE DESCRIPTION BODY CONTENT
 /*========================
 FIRST FOOTER CONTENT
 =========================*/
+
+
 .first_footer {
     background-color: #1e1e1e;
     text-align: center;
@@ -593,6 +600,12 @@ div .fa-2x {
     border: 0 !important;
 }
 
+/*======================
+BODY MARGINS AND PADDING
+========================*/
+.main {
+    margin-top: 80px;
+}
 /*========================
 MEDIA QUERIES MOBILE
 =========================*/
@@ -645,13 +658,17 @@ MEDIA QUERIES TABLET
     /*========================
     NAV
     =========================*/
-    .navbar-default {
+    
+    
+    .navbar-collapse {
         height: 70px;
         padding-top: 10px;
+        background-color: #1e1e1e;
     }
 
     nav li {
         padding-right: -15px;
+        background-color: #1e1e1e;
     }
 
     .navbar-brand {
