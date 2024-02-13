@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const { Menu, Reservation, Order, Customer } = require('../models');
+const { Menu, Cocktail, Reservation, Order, Customer } = require('../models');
 const withAuth = require('../utils/auth')
 
 // GET homepage
@@ -235,6 +235,23 @@ router.get('/reservation/:id', async (req, res) => {
         res.render('reservation', { reservation });
     } catch (err) {
         console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.get('/cocktail', async (req, res) => {
+    try {
+        
+        const cocktailData = await Cocktail.findAll({
+
+        });
+
+        const cocktail = cocktailData.map(item => item.get({ plain: true }));
+        res.render('cocktail', {
+            cocktail: cocktail,
+            logged_in: req.session.logged_in,
+        });
+    } catch (err) {
         res.status(500).json(err);
     }
 });

@@ -4,6 +4,7 @@ const Menu = require('./Menu');
 const Order = require('./Order');
 const OrderMenu = require('./OrderMenu');
 const Reservation = require('./Reservations');
+const Cocktail = require('./Cocktails');
 
 
 // Reservation belong to Customer
@@ -89,4 +90,5 @@ module.exports = {
   Order,  
   Reservation,
   OrderMenu, 
+  Cocktail,
 };

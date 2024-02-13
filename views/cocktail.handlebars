@@ -1,32 +1,30 @@
 <style>
-    .drink {
-        margin-bottom: 20px;
-        /* Adjust the value as needed for more or less spacing */
-    }
-
-    .card-header {
-        margin-bottom: 20px;
-        /* Adjust the value as needed for more or less spacing */
-    }
+  .drink {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
+   .card-header {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
 </style>
 
-{{!--Tyler: I'm adding the style up here for now for testing purposes. This could be accomplished in CSS. --}}
+{{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
 
-<div class="drink-container">
-    <div class="card-header">
-        <h2>
-            Cocktails
-        </h2>
+<div class="menu-container">
+  <div class="card-header">
+    <h2>
+      Cocktail List
+    </h2>
+  </div>
+  {{#each cocktail as |cocktail|}}
+    <div class="drink">
+      <p class="item-and-price">
+        {{cocktail.drink_name}} - ${{cocktail.price}}
+      </p>
+      <p class="description">
+        {{cocktail.description}}
+      </p>
     </div>
-    {{#each cocktail as |cocktailItem|}}
-    <div class="cocktail">
-        <p class="drink_name-and-price">
-            {{cocktailItem.drinkName}} - ${{cocktailItem.price}}
-        </p>
-        <p class="description">
-            {{cocktailItem.description}}
-        </p>
-        {{/each}}
-    </div>
+  {{/each}}
+</div>
 
-    {{!-- &nbsp; is a non breaking space --}}
+{{!-- &nbsp; is a non breaking space --}}
