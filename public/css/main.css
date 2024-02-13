@@ -196,7 +196,7 @@ span
     NAV
 =========================*/
 div#bs-example-navbar-collapse-1 {
-    height: 368px;
+    height: 380px;
     overflow: hidden;
     text-align: center;
     text-decoration: none !important;
@@ -218,7 +218,7 @@ nav {
 li {
     color: white !important;
     /*padding-left: 10px;*/
-    word-spacing: 5px !important;
+    /* word-spacing: 5px !important; */
 }
 
 /*========================
@@ -285,8 +285,24 @@ TOP OF HOMEPAGE CONTAINER
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
 
+    
+.featured.background_content::after {
+    content: ""; /* Create a pseudo-element to cover the image */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure the pseudo-element is on top of the image */
+    cursor: pointer; /* Change cursor to pointer */
+}
+    
+.featured.background_content:hover::after {
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
+}
 .pricing.background_content {
     background: url('../images/pricing.jpg') no-repeat center center;
     background-size: cover;
@@ -922,4 +938,14 @@ MEDIA QUERIE DESKTOP
 .no-bullets {
     color: white;
     list-style-type: none;
+    padding-bottom: 50px;
+}
+
+#contact, description_content, #footer-nav {
+    height: 80px;
+}
+
+li {
+    padding: 0;
+    margin: 0 !important;
 }
