@@ -22,24 +22,24 @@
 <body>
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-            <a class="navbar-brand" href="#">Restaurant Management</a>
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Restaurant Management</a>
                 <ul class="nav navbar-nav">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/reservation">Reservations</a></li>
-                        <li><a href="/menu">Menu</a></li>
-                        <li><a href="/order">Order Takeout</a></li>
-                        <li><a href="/about-us">About Us</a></li>
-                        {{#if logged_in}}
-                        <li><a href="/profile">Logout</a></li>
-                        {{else}}
-                        <li><a href="/login">Login</a></li>
-                        {{/if}}
-                    </ul>
-                    </div>
-                </div>
-                </nav>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/reservation">Reservations</a></li>
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a href="/order">Order Takeout</a></li>
+                    <li><a href="/about-us">About Us</a></li>
+                    {{#if logged_in}}
+                    <li id="logout"><a href="/">Logout</a></li>
+                    {{else}}
+                    <li><a href="/login">Login</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <main class="container container-fluid mt-5 main">
         <!-- Render the sub layout -->
@@ -52,12 +52,13 @@
             <nav class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
                     <section class="mb-5">
-                    <ul class="no-bullets">
-        <li class="contact"><a href="https://maps.app.goo.gl/zsKzhj7WucL3JGnt9">Find Us:</a>  123 SE Main Street  Minneapolis, MN 55411</li>
-            <li class="contact"></i><a href="mailto:hello@restaurant.com">
-            Email Us:</a>  hello@restaurant.com</li>
-        <li class="contact"></i><a href="tel:=16121234567">Call Us:</a>  612 123 4567</li>
-        </ul>
+                        <ul class="no-bullets">
+                            <li class="contact"><a href="https://maps.app.goo.gl/zsKzhj7WucL3JGnt9">Find Us:</a> 123 SE
+                                Main Street Minneapolis, MN 55411</li>
+                            <li class="contact"></i><a href="mailto:hello@restaurant.com">
+                                    Email Us:</a> hello@restaurant.com</li>
+                            <li class="contact"></i><a href="tel:=16121234567">Call Us:</a> 612 123 4567</li>
+                        </ul>
                     </section>
                 </div>
             </nav>
@@ -69,6 +70,11 @@
     <script type="text/javascript" src="/js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
+    {{#if logged_in}}
+    <script src='./js/logout.js'></script>
+    {{/if}}
+
+
 
 </body>
 
