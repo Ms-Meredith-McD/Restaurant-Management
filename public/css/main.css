@@ -303,27 +303,29 @@ TOP OF HOMEPAGE CONTAINER
 .featured.background_content:hover::after {
     background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
 }
-.pricing.background_content {
-    background: url('../images/pricing.jpg') no-repeat center center;
+.cocktails.background_content {
+    background: url('../images/beverage-citrus.jpg') no-repeat center center;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
 
-.reservation.background_content {
-    background: url('../images/reservation-seat.jpg') no-repeat center center;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    
+.cocktails.background_content::after {
+    content: ""; /* Create a pseudo-element to cover the image */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure the pseudo-element is on top of the image */
+    cursor: pointer; /* Change cursor to pointer */
 }
-
-.bread.background_content {
-    background: url('../images/breakfast.jpg') no-repeat center center;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    
+.cocktails.background_content:hover::after {
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
 }
-
 /*========================
 DESCRIPTION BODY CONTENT
 =========================*/
