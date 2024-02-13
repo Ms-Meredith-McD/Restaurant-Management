@@ -36,14 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
         field.addEventListener('change', updateOrderTotals);
     });
 
-
-
     // Attach event listener to tip input element using jQuery
     orderTipElement.on("input", updateOrderTotals);
-
-
-
-
 
 
     orderForm.on('click', function (event) {
