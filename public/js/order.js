@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 // Handle the response from the server (e.g., display a success message)
                 console.log(data);
+                document.location.replace('/thank-you');
             })
             .catch(error => {
                 // Handle errors
