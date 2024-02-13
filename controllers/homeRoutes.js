@@ -18,7 +18,13 @@ router.get('/about-us', async (req, res) => {
 
 //GET Manager hub
 router.get('/manager', async (req, res) => {
-    const orderData = await Order.findAll();
+    const orderData = await Order.findAll({
+        include: [{
+            model: Customer,
+            attributes: ['name']
+        }]
+    });
+
     const order = orderData.map(item => item.get({ plain: true }));
     const reservationData = await Reservation.findAll();
     const reservation = reservationData.map(item => item.get({ plain: true }));
@@ -48,7 +54,7 @@ router.get('/profile', async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         //*********WILL NEED TO CHECK HOW SESSION IS STORING USER/CUSTOMER_ID */
-        const customerData = await Customer.findByPk(req.session.user_id, {
+        const customerData = await Customer.findByPk(req.session.customer_id, {
             attributes: { exclude: ['password'] },
             include: [{ model: Order },
             {
@@ -113,7 +119,9 @@ router.get('/menu/:id', async (req, res) => {
 
 // Order page, auth required, THIS PAGE SHOWS ALL ORDERS PLACED, NOT TO POST AN ORDER, THAT WILL BE DIFFERENT
 router.get('/order', async (req, res) => {
+
     try {
+        
         //find all order items
         const orderData = await Menu.findAll();
 

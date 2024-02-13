@@ -1,59 +1,45 @@
+<style>
+  .dish {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
+   .card-header {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
+</style>
+
+{{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
+
 <div class="menu-container">
-  <div class="card-header col-md-10">
+  <div class="card-header">
     <h2>
-      &#127869 Our Menu
+      Our Menu
     </h2>
   </div>
-  {{#each menu as |menu|}}
-    <div class="dish col-md-5">
-      <p>
-        {{menu.menu_item}}.
-        {{menu.price}}
+  {{#each menu as |menuItem|}}
+    <div class="dish">
+      <p class="item-and-price">
+        {{menuItem.menu_item}} - ${{menuItem.price}}
       </p>
+      <p class="description">
+        {{menuItem.description}}
       </p>
-    {{#if has_nuts}}
-    <p class="has-nuts">
-      Contains Nuts
-    </p>
-    {{/if}}
-    </p>
-    {{#if has_dairy}}
-    <p class="has_dairy">
-      Contains Dairy
-    </p>
-    {{/if}}
-    </p>
-    {{#if vegetarian}}
-    <p class="vegetarian">
-      Vegetarian Option
-    </p>
-    {{/if}}
-    </p>
-    {{#if gluten_free}}
-    <p class="gluten_free">
-      Gluten Free Option
-    </p>
-    {{/if}}
-  </div>
+      <p class="additional-info">
+        {{#if menuItem.has_nuts}}
+          <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
+        {{/if}}
+        {{#if menuItem.has_dairy}}
+          <span class="info">Contains Dairy</span>&nbsp;&nbsp;&nbsp;
+        {{/if}}
+        {{#if menuItem.vegetarian}}
+          <span class="info">Vegetarian Option</span>&nbsp;&nbsp;&nbsp;
+        {{/if}}
+        {{#if menuItem.gluten_free}}
+          <span class="info">Gluten Free Option</span>&nbsp;&nbsp;&nbsp;
+        {{/if}}
+      </p>
+    </div>
   {{/each}}
 </div>
 
-{{!-- In the class example for serialization here's the get call they have.
-NOT SURE THIS IS RELEVANT
-Will go in JS but putting it here for reference.
-LESSON 7
+{{!-- &nbsp; is a non breaking space --}}
 
-GET one dish with serialized data
-router.get('/dish/:id', async (req, res) => {
-try {
-Search the database for a dish with an id that matches params
-const dishData = await Dish.findByPk(req.params.id);
-console.log(dishData)
-We use .get({ plain: true }) on the object to serialize it so that it only includes the data that we need.
-const dish = dishData.get({ plain: true });
-Then, the 'dish' template is rendered and dish is passed into the template.
-res.render('dish', dish);
-} catch (err) {
-res.status(500).json(err);
-}
-}); --}}

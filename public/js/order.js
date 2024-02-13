@@ -36,68 +36,62 @@ document.addEventListener("DOMContentLoaded", function () {
         field.addEventListener('change', updateOrderTotals);
     });
 
-
-
     // Attach event listener to tip input element using jQuery
     orderTipElement.on("input", updateOrderTotals);
-
-
-
-
 
 
     orderForm.on('click', function (event) {
         event.preventDefault();
         let subtotal = 0;
-       const selectedItems = [];
+        const selectedItems = [];
 
-    // Iterate through each menu item
-    Array.from(document.querySelectorAll('.itemQty')).forEach(field => {
-        // const menuItemId = parseInt(field.dataset.menuItemId, 10);
-        const quantity = parseInt(field.value, 10) || 0;
-        const itemPrice = parseFloat(field.closest('.dish').querySelector('.orderPrice').textContent);
-        const orderItemName = field.closest('.dish').querySelector('.orderItemName').textContent;
-        subtotal += itemPrice * quantity;
+        // Iterate through each menu item
+        Array.from(document.querySelectorAll('.itemQty')).forEach(field => {
+            // const menuItemId = parseInt(field.dataset.menuItemId, 10);
+            const quantity = parseInt(field.value, 10) || 0;
+            const itemPrice = parseFloat(field.closest('.dish').querySelector('.orderPrice').textContent);
+            const orderItemName = field.closest('.dish').querySelector('.orderItemName').textContent;
+            subtotal += itemPrice * quantity;
 
-        if (quantity > 0) {
-            // Only include items with quantity greater than zero
-            selectedItems.push({
-                menu_name: orderItemName,
-                quantity: quantity
+            if (quantity > 0) {
+                // Only include items with quantity greater than zero
+                selectedItems.push({
+                    menu_name: orderItemName,
+                    quantity: quantity
+                });
+            }
+        });
+
+        const taxRate = 0.06875; // 6.875%
+        const tax = subtotal * taxRate;
+        const tip = parseFloat(orderTipElement.val()) || 0;
+        const total = subtotal + tax + tip;
+
+        // Collect order data
+        const orderData = {
+            items: selectedItems,
+            subtotal: subtotal.toFixed(2),
+            tax: tax.toFixed(2),
+            tip: tip.toFixed(2),
+            total: total.toFixed(2)
+        };
+        console.log(orderData);
+        // Assuming you have a server endpoint for handling orders
+        fetch("/api/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(orderData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server (e.g., display a success message)
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle errors
+                console.error("Error submitting order:", error);
             });
-        }
     });
-
-    const taxRate = 0.06875; // 6.875%
-    const tax = subtotal * taxRate;
-    const tip = parseFloat(orderTipElement.val()) || 0;
-    const total = subtotal + tax + tip;
-
-    // Collect order data
-    const orderData = {
-        items: selectedItems,
-        subtotal: subtotal.toFixed(2),
-        tax: tax.toFixed(2),
-        tip: tip.toFixed(2),
-        total: total.toFixed(2)
-    };
-console.log(orderData);
-    // Assuming you have a server endpoint for handling orders
-    fetch("/api/orders", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(orderData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle the response from the server (e.g., display a success message)
-        console.log(data);
-    })
-    .catch(error => {
-        // Handle errors
-        console.error("Error submitting order:", error);
-    });
-});
 });

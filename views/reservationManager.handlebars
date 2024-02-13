@@ -8,10 +8,10 @@
     <p>Reservation Date and Time: {{reservation.reservation_datetime}}</p>
     <p>Special Requests: {{reservation.notes}}</p>
     <p>Customer Id: {{reservation.customer_id}}</p></br>
-    <button type="button" id="delete-btn" data-id="{{reservation.id}}">Delete Reservation</button>
+    <button type="button" class="delete-btn" data-id="{{reservation.id}}">Delete Reservation</button>
 </div>
 <br><br>
 {{/each}}
 
 {{!-- Once we have the route setup for manager reservations I can test this further. Currently this should list each reservation after another.
-We also are going to need delete button logic --}}
+We also are going to need delete button logic --}}      
