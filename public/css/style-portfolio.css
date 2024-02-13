@@ -1,4 +1,8 @@
 /** page structure **/
+#contact {
+    padding: 40px;
+}
+
 #w {
 	display: block;
 	max-width: 1100px;

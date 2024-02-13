@@ -17,7 +17,8 @@ html {
  */
 
 body {
-  margin: 0;
+  margin: 50;
+  padding: 50;
 }
 
 /* HTML5 display definitions
@@ -28,6 +29,10 @@ body {
  * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
+
+#contact {
+  padding: 40px;
+}
 
 article,
 aside,
