@@ -1,47 +1,72 @@
-<h2>Book a reservation!</h2>
-<p>Interested in reserving a table for a special occasion? Feel free to use the form below. Please provide your date, time table size, and any additional notes you have!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 style="font-size: 50px;">Book a reservation!</h2>
+      <p style="font-size: 25px;">Interested in reserving a table for a special occasion? Feel free to
+        use the form below. Please provide your date, time, table size, and any
+        additional notes you have!</p>
+        <div style="margin-top: 20px; font-size: 20px">
+        <p>Address: 123 SE Main Street Minneapolis, MN 55411</p>
+        <p>Phone: 612-123-4567</p>
+        </div>
+    </div>
+  </div>
 
-<form>
-<input type="date" name="reservationDate" required>
-<label for="reservedTime">Select Time:</label>
-<select id="reservedTime" name="reservedTime" required>
- <option value="11:00:00">5:00</option>
-  <option value="11:30:00">5:30</option>
-  <option value="12:00:00">6:00</option>
-  <option value="12:30:00">6:30</option>
-   <option value="13:00:00">7:00</option>
-  <option value="13:30:00">7:30</option>
-  <option value="14:00:00">8:00</option>
-  <option value="14:30:00">8:30</option> 
-   <option value="15:00:00">9:00</option>
-      <option value="15:30:00">9:30</option>
 
-</select>
-<label for="tableSize">Table Size:</label>
-<select id="tableSize" name="tableSize" required>
- <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-   <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-   <option value="9">9</option>
-  <option value=" 10">10</option>
-</select>
-
-<input type="text" name="notes" placeholder="notes" required>
-
-<input type="submit" value="Submit Reservation">
-</form>
-
+  <div class="row mt-3">
+    <div class="col-md-8">
+      <form style="margin-top: 20px;">
+        <div class="form-group mb-2">
+          <input type="date" name="reservationDate" required />
+        </div>
+        <div class="form-group mb-2">
+          <label for="reservedTime">Select Time:</label>
+          <select
+            id="reservedTime"
+            class="form-control"
+            name="reservedTime"
+            required
+          >
+            <option value="11:00:00">5:00</option>
+            <option value="11:30:00">5:30</option>
+            <option value="12:00:00">6:00</option>
+            <option value="12:30:00">6:30</option>
+            <option value="13:00:00">7:00</option>
+            <option value="13:30:00">7:30</option>
+            <option value="14:00:00">8:00</option>
+            <option value="14:30:00">8:30</option>
+            <option value="15:00:00">9:00</option>
+            <option value="15:30:00">9:30</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tableSize">Table Size:</label>
+          <select id="tableSize" class="form-control" name="tableSize" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <input
+            type="text"
+            name="notes"
+            class="form-control"
+            placeholder="notes"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <input type="submit" class="btn btn-lg" style="background-color: gray;" value="Submit Reservation"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <script src="js/reservations.js"></script>
-
-{{!-- We need to format this page with bootstrap to make it look nicer. Putting the form inside of a div/container and adding a border around it 
-for styling. Otherwise we can decide if we want any other content on the page other than the reservation form
-
-IDEAS: Add a small icon of the fictionary logo of our restauarant, along with the address & phone number for realism.
---}}
-
-
