@@ -5,8 +5,8 @@
     <p>Customer ID Number: {{customer.id}}</p>
     <p>Customer Name: {{customer.name}}</p>
     <p>Customer Email: {{customer.email}}</p>
-    <p>Is this customer a manager?: {{customer.is_manager}}</p>
-    <button type="button" id="delete-btn" data-id="{{customer.id}}">Remove Customer</button>
+    <p>MANAGER PRIVELAGES {{customer.is_manager}}</p>
+    <button type="button" class="cust-delete" data-id="{{customer.id}}">Remove Customer</button>
 </div>
 <br><br>
 {{/each}}
