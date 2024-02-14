@@ -1,25 +1,20 @@
-<div class="card-header text-center col-md-10">
-    <h1>Thank You for Your Order.</h1>
+<div class="card-header text-center" style="margin-top: 80px;">
+    <h1 class="pacifico-regular" style="font-size: 40px;">Thank You for Your Order.</h1>
 </div>
 <div class="d-flex container-fluid flex-wrap-column flex-md-row flex-column">
-    <div class="d-flex justify-content-center align-items-center">
-        <p>
-            Thank you, {{order.customer.name}} for your order.
-        </p>
-        <p>
-            A confirmation will be sent to your email address: {{order.customer.email}}
-        </p>
-        <p>
+    <div class="d-flex text-center">
+         <p class="kanit-medium" style="font-size: 50px;">
             Your order number is: {{ order.id }}
         </p>
-        <p>
-            Your order of
+         <p class="kanit-medium" style="font-size: 50px;">
+            Your order of:
         </p>
         {{#each order.items}}
-        <p>{{this.menu_name}} Quantity {{this.quantity}}</p>
+         <p class="kanit-medium" style="font-size: 50px;">{{this.menu_name}} X {{this.quantity}}</p>
         {{/each}}
-        <p>
-            Placed {{order.createdAt}}, will be ready in 30 minutes or less.
+
+         <p class="kanit-medium" style="font-size: 50px;">
+            Your order will be ready in about 30 minutes. Please see the host for payment and pickup!
         </p>
         <button type="button" id="home-btn">Back to Homepage</button>
     </div>

@@ -92,24 +92,6 @@ const menuItems = [
         "price": 7.99
     },
     {
-        "menu_item": "Margherita Pizza",
-        "description": "Classic pizza with fresh mozzarella, tomatoes, and basil on a crispy crust.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 13.99
-    },
-    {
-        "menu_item": "Beef Burger",
-        "description": "Grilled beef patty with lettuce, tomato, and onion on a toasted bun. Served with fries.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": false,
-        "gluten_free": false,
-        "price": 12.99
-    },
-    {
         "menu_item": "Chicken Caesar Wrap",
         "description": "Grilled chicken with Caesar salad wrapped in a flour tortilla.",
         "has_nuts": false,
@@ -181,79 +163,7 @@ const menuItems = [
         "gluten_free": false,
         "price": 15.99
     },
-    {
-        "menu_item": "Butternut Squash Soup",
-        "description": "A creamy, comforting soup made with roasted butternut squash and a hint of nutmeg.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": true,
-        "price": 8.99
-    },
-    {
-        "menu_item": "Eggplant Parmesan",
-        "description": "Slices of breaded eggplant, baked with marinara sauce and mozzarella cheese. Served with spaghetti.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 14.99
-    },
-    {
-        "menu_item": "Lemon Herb Grilled Chicken",
-        "description": "Grilled chicken breast marinated in lemon and herbs, served with a quinoa and vegetable salad.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": false,
-        "gluten_free": true,
-        "price": 14.99
-    },
-    {
-        "menu_item": "Pesto Pasta Primavera",
-        "description": "Penne pasta tossed with a fresh basil pesto, sun-dried tomatoes, and a variety of seasonal grilled vegetables.",
-        "has_nuts": true,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 14.99
-    },
-    {
-        "menu_item": "Steak Frites",
-        "description": "Juicy grilled steak served with a side of crispy fries and herbed butter.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": false,
-        "gluten_free": true,
-        "price": 17.99
-    },
-    {
-        "menu_item": "Roasted Vegetable Quiche",
-        "description": "A savory quiche filled with roasted zucchini, bell peppers, and onions, set in a flaky pastry crust.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 10.99
-    },
 
-    {
-        "menu_item": "Lamb Gyro",
-        "description": "Slices of seasoned lamb wrapped in a soft pita with tzatziki sauce, onions, and tomatoes.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": false,
-        "gluten_free": false,
-        "price": 9.99
-    },
-    {
-        "menu_item": "Gianduja e Zabaione",
-        "description": "Chocolate-hazelnut gianduja and creamy zabaione served together for a delightful dessert experience.",
-        "has_nuts": true,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 8.99
-    }
 
 ];
 
