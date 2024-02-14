@@ -15,12 +15,12 @@ form.addEventListener('submit', async function(event) {
     const reservationDateTime = `${reservationDate} ${reservationTime}`;
     
     console.log(reservationDateTime)
-
+   
   let payload = {
     party_size: tableSize,
     reservation_datetime: reservationDateTime,
     notes: notes,
-    customer_id: 3
+    customer_id: 11
   }
 
   const resp = await fetch("/api/reservation", {
