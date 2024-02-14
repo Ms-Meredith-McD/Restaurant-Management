@@ -254,8 +254,8 @@ TOP OF HOMEPAGE CONTAINER
 
 
 /* ========================
-    IMAGE INTRO BANNER CONTENT
-   =========================*/
+IMAGE INTRO BANNER CONTENT
+=========================*/
 
 .background_content {
     position: relative;
@@ -472,6 +472,16 @@ TOP OF HOMEPAGE CONTAINER
 .d-flex-container p {
     margin-bottom: 20px;
     /* Add space between each d-flex container */
+}
+
+/* ORDER TAKEOUT */
+
+.order {
+    margin-top: 20px; /* Adjust this value as needed */
+}
+
+.order-container {
+    margin-top: 20px; /* Adjust this value as needed */
 }
 
 
