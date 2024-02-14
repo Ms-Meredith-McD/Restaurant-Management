@@ -157,7 +157,7 @@ $(document).ready(function () {
 			}
 		});
 	
-       
+
         $(function(){
             $('#portfolio').mixitup({
                 targetSelector: '.item',
@@ -169,4 +169,4 @@ $(document).ready(function () {
             $( "#datepicker" ).datepicker();
         });
     
-    };
+    }
