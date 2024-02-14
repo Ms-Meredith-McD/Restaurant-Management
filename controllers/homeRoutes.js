@@ -139,8 +139,6 @@ router.get('/login', (req, res) => {
 // Menu page, auth not required, could add auth for our ordering system
 router.get('/menu', async (req, res) => {
     try {
-        const customerId = req.session.customer_id;
-        const customer = await Customer.findByPk(customerId);
         //find all menu items
         const menuData = await Menu.findAll({
 
@@ -150,9 +148,7 @@ router.get('/menu', async (req, res) => {
         //*********logged in set to false, ALL CAN SEE MENU NOW */
         //******THIS WILL NEED TO BE TESTED, menu: menu may cause issues since this is now an arraty */
         res.render('menu', {
-            menu: menu,
-            logged_in: req.session.logged_in,
-            is_manager: customer.is_manager
+            menu: menu
         });
     } catch (err) {
         res.status(500).json(err);
@@ -163,8 +159,8 @@ router.get('/menu', async (req, res) => {
 router.get('/menu/:id', async (req, res) => {
     try {
         const menuData = await Menu.findByPk(req.params.id);
-        const customerId = req.session.customer_id;
-        const customer = await Customer.findByPk(customerId);
+        
+        
 
         if (!menuData) {
             res.render('menu', { error: "Menu item not found!" });
@@ -173,8 +169,7 @@ router.get('/menu/:id', async (req, res) => {
 
         const menu = menuData.get({ plain: true });
         res.render('menu', {
-            menu: menu, logged_in: req.session.logged_in,
-            is_manager: customer.is_manager
+            menu: menu
         });
     } catch (err) {
         console.log(err);
@@ -311,17 +306,14 @@ router.get('/reservation/:id', withAuth, async (req, res) => {
 
 router.get('/cocktail', async (req, res) => {
     try {
-        const customerId = req.session.customer_id;
-        const customer = await Customer.findByPk(customerId);
+     
         const cocktailData = await Cocktail.findAll({
 
         });
 
         const cocktail = cocktailData.map(item => item.get({ plain: true }));
         res.render('cocktail', {
-            cocktail: cocktail,
-            logged_in: req.session.logged_in,
-            is_manager: customer.is_manager
+            cocktail: cocktail
         });
     } catch (err) {
         res.status(500).json(err);
