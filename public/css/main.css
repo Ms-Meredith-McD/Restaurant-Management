@@ -452,6 +452,12 @@ TOP OF HOMEPAGE CONTAINER
     /* Add more space between images vertically */
 }
 
+.order-menu-content {
+    min-width: 60%; /* Set a minimum width for the menu content */
+    margin-top: 200px !important; /* Adjust this value as needed */
+}
+
+
 .menu-content {
     min-width: 60%;
     /* Set a minimum width for the menu content */
