@@ -1,10 +1,13 @@
 const nodemailer = require('nodemailer');
 
-// Set up your email transport configuration
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.zoho.com',
+  port: 465,
+  secure: true, // use SSL
   auth: {
-    user: 'confirmreservation1@gmail.com',
+    user: 'confirmreservation1@zohomail.com',
     pass: 'Twin$1991',
   },
 });
+
+module.exports = transporter;

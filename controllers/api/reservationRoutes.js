@@ -29,15 +29,16 @@ router.get('/:id', (req, res) => {
 // CREATE
 router.post('/', async (req, res) => {
     try {
-      // Create the reservation
+      const customerId = req.session.customer_id;
+        // Create the reservation
       const newReservation = await Reservations.create(req.body);
-  
+      
       // Retrieve customer information associated with the reservation
-      const customer = await Customers.findByPk(newReservation.customer_id);
-  
+      const customer = await Customers.findByPk(req.body.customer_id);
+      console.log(customer.email);
       // Send email to the customer
       const customerMailOptions = {
-        from: 'confirmreservation1@gmail.com',
+        from: 'confirmreservation1@zohomail.com',
         to: customer.email,
         subject: 'Reservation Confirmation',
         text: `Thank you for your reservation of ${newReservation.party_size} at ${newReservation.reservation_datetime}. If you need to alter or cancel your reservation, please call us at 612-123-4567.`,
@@ -53,8 +54,8 @@ router.post('/', async (req, res) => {
   
       // Send email to confirmreservation1@gmail.com
       const adminMailOptions = {
-        from: 'confirmreservation1@gmail.com',
-        to: 'confirmreservation1@gmail.com',
+        from: 'confirmreservation1@zohomail.com',
+        to: 'confirmreservation1@zohomail.com',
         subject: 'New Reservation',
         text: `New reservation of ${newReservation.party_size} at ${newReservation.reservation_datetime}.`,
       };
