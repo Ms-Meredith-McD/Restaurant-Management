@@ -16,6 +16,9 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="/favicon-1.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,200&display=swap" rel="stylesheet">
     <title>Gary's Gitpub</title>
 </head>
 
@@ -42,7 +45,7 @@
                         <li><a href="/order">Order Takeout</a></li>
                         <li><a href="/about-us">About Us</a></li>
                         {{#if logged_in}}
-                        <li><a href="/profile">Logout</a></li>
+                        <li id="logout"><a href="/">Logout</a></li>
                         {{else}}
                         <li><a href="/login">Login</a></li>
                         {{/if}}
