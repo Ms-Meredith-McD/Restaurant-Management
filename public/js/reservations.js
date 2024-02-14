@@ -1,5 +1,4 @@
 const form = document.querySelector('form')
-
 form.addEventListener('submit', async function(event) {
     event.preventDefault()
 
@@ -34,5 +33,6 @@ form.addEventListener('submit', async function(event) {
     })
     const data = await resp.json()
     console.log(data)
+    $('#confirmation').removeClass('hidden')
   })
   

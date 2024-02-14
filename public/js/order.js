@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     quantity: quantity
                 });
             }
-             
+             document.location.replace('/thank-you')
         });
 
         const taxRate = 0.06875; // 6.875%
