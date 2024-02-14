@@ -1,6 +1,10 @@
-<div class="card-header text-center" style="margin-top: 80px;">
-    <h1 class="pacifico-regular" style="font-size: 40px;">Thank You for Your Order.</h1>
-</div>
+<div class="order-container">
+    <div class="card-header text-center" style="margin-top: 80px;">
+        <h2 class="pacifico-regular" style="font-size: 50px;">
+            Thank you for your Order
+        </h2><br>
+
+
 <div class="d-flex container-fluid flex-wrap-column flex-md-row flex-column">
     <div class="d-flex text-center">
          <p class="kanit-medium" style="font-size: 50px;">
@@ -8,7 +12,11 @@
         </p>
          <p class="kanit-medium" style="font-size: 50px;">
             Your order of:
+        <br>
+        <p>
+            Your order of:
         </p>
+        <br>
         {{#each order.items}}
          <p class="kanit-medium" style="font-size: 50px;">{{this.menu_name}} X {{this.quantity}}</p>
         {{/each}}
@@ -16,7 +24,9 @@
          <p class="kanit-medium" style="font-size: 50px;">
             Your order will be ready in about 30 minutes. Please see the host for payment and pickup!
         </p>
+        <br>
         <button type="button" id="home-btn">Back to Homepage</button>
     </div>
+</div>
 </div>
 <script src='./js/thank-you.js'></script>

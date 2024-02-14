@@ -74,96 +74,14 @@ const menuItems = [
         "price": 11.99
     },
     {
-        "menu_item": "Garden Fresh Salad",
-        "description": "A mix of fresh greens, cherry tomatoes, cucumbers, and carrots, served with a light vinaigrette.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": true,
-        "gluten_free": true,
-        "price": 7.99
-    },
-    {
-        "menu_item": "Classic Caesar Salad",
-        "description": "Romaine lettuce with Parmesan cheese, croutons, and Caesar dressing.",
-        "has_nuts": false,
+        "menu_item": "Gianduja e Zabaione",
+        "description": "Chocolate-hazelnut gianduja and creamy zabaione served together for a delightful dessert experience",
+        "has_nuts": true,
         "has_dairy": true,
         "vegetarian": true,
         "gluten_free": false,
-        "price": 7.99
+        "price": 8.99
     },
-    {
-        "menu_item": "Chicken Caesar Wrap",
-        "description": "Grilled chicken with Caesar salad wrapped in a flour tortilla.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": false,
-        "gluten_free": false,
-        "price": 10.99
-    },
-    {
-        "menu_item": "Vegetable Stir Fry",
-        "description": "A mix of stir-fried vegetables served over steamed rice.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": true,
-        "gluten_free": true,
-        "price": 10.99
-    },
-    {
-        "menu_item": "Salmon with Dill Sauce",
-        "description": "Grilled salmon fillet topped with a creamy dill sauce. Served with steamed vegetables.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": false,
-        "gluten_free": true,
-        "price": 10.99
-    },
-    {
-        "menu_item": "Mushroom Risotto",
-        "description": "Creamy risotto with sautéed mushrooms and Parmesan cheese.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 10.99
-    },
-    {
-        "menu_item": "Grilled Portobello Burger",
-        "description": "A juicy, grilled portobello mushroom cap served with lettuce, tomato, and a zesty aioli on a whole wheat bun.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": true,
-        "gluten_free": false,
-        "price": 11.99
-    },
-    {
-        "menu_item": "Shrimp Scampi",
-        "description": "Succulent shrimp sautéed with garlic, lemon, and parsley, served over a bed of linguine.",
-        "has_nuts": false,
-        "has_dairy": true,
-        "vegetarian": false,
-        "gluten_free": false,
-        "price": 10.99
-    },
-    {
-        "menu_item": "Maple Glazed Salmon",
-        "description": "A sweet and savory maple-glazed salmon fillet, grilled to perfection. Served with roasted sweet potatoes.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": false,
-        "gluten_free": true,
-        "price": 16.99
-    },
-    {
-        "menu_item": "BBQ Pork Ribs",
-        "description": "Tender, slow-cooked pork ribs smothered in BBQ sauce. Served with coleslaw and cornbread.",
-        "has_nuts": false,
-        "has_dairy": false,
-        "vegetarian": false,
-        "gluten_free": false,
-        "price": 15.99
-    },
-
 
 ];
 
