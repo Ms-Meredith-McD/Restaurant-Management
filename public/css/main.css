@@ -439,7 +439,16 @@ TOP OF HOMEPAGE CONTAINER
     /* Set a minimum width for the menu content */
 }
 
+/* ABOUT US */
+.d-flex-container {
+    margin-bottom: 20px;
+    /* Add space below the h2 */
+}
 
+.d-flex-container p {
+    margin-bottom: 20px;
+    /* Add space between each d-flex container */
+}
 
 
 /*========================
