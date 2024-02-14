@@ -1,45 +1,49 @@
-<style>
-  .dish {
-    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
-  }
-   .card-header {
-    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
-  }
-</style>
-
-{{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
-
-<div class="menu-container">
-  <div class="card-header">
-    <h2>
-      Our Menu
-    </h2>
+<!-- menu.handlebars -->
+<div class="menu-container d-flex justify-content-center align-items-center">
+  <div class="menu-image-column">
+    <img src="/images/appetizercombo.jpg" alt="Appetizer Combo" class="menu-image">
+    <img src="/images/burgerfries.jpg" alt="Burger and Fries" class="menu-image">
+    <img src="/images/calamari.jpg" alt="Calamari" class="menu-image">
   </div>
-  {{#each menu as |menuItem|}}
-    <div class="dish">
-      <p class="item-and-price">
-        {{menuItem.menu_item}} - ${{menuItem.price}}
-      </p>
-      <p class="description">
-        {{menuItem.description}}
-      </p>
-      <p class="additional-info">
-        {{#if menuItem.has_nuts}}
-          <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
-        {{/if}}
-        {{#if menuItem.has_dairy}}
-          <span class="info">Contains Dairy</span>&nbsp;&nbsp;&nbsp;
-        {{/if}}
-        {{#if menuItem.vegetarian}}
-          <span class="info">Vegetarian Option</span>&nbsp;&nbsp;&nbsp;
-        {{/if}}
-        {{#if menuItem.gluten_free}}
-          <span class="info">Gluten Free Option</span>&nbsp;&nbsp;&nbsp;
-        {{/if}}
-      </p>
+
+  <div class="menu-content">
+    <div class="card-header">
+      <h2>
+        Our Menu
+      </h2>
     </div>
-  {{/each}}
+    {{#each menu as |menuItem|}}
+      <div class="dish">
+        <p class="item-and-price">
+          {{menuItem.menu_item}} - ${{menuItem.price}}
+        </p>
+        <p class="description">
+          {{menuItem.description}}
+        </p>
+        <p class="additional-info">
+          {{#if menuItem.has_nuts}}
+            <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
+          {{/if}}
+          {{#if menuItem.has_dairy}}
+            <span class="info">Contains Dairy</span>&nbsp;&nbsp;&nbsp;
+          {{/if}}
+          {{#if menuItem.vegetarian}}
+            <span class="info">Vegetarian Option</span>&nbsp;&nbsp;&nbsp;
+          {{/if}}
+          {{#if menuItem.gluten_free}}
+            <<span class="info">Gluten Free Option</span>&nbsp;&nbsp;&nbsp;
+          {{/if}}
+        </p>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="menu-image-column">
+    <img src="/images/artichokedip.jpg" alt="Artichoke Dip" class="menu-image">
+    <img src="/images/pizza.jpg" alt="Margherita Pizza" class="menu-image">
+    <img src="/images/popcornshrimp.jpg" alt="Popcorn Shrimp" class="menu-image">
+  </div>
 </div>
 
-{{!-- &nbsp; is a non breaking space --}}
+
 

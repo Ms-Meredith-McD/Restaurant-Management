@@ -154,7 +154,7 @@ html {
 
 a {
     font-family: "museo-sans", helvetica, sans-serif;
-    color:antiquewhite;
+    color: antiquewhite;
     margin: 0;
     padding: 0;
 }
@@ -162,8 +162,7 @@ a {
 h1,
 h2,
 p,
-span
-{
+span {
     font-family: "museo-sans", helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -285,46 +284,57 @@ TOP OF HOMEPAGE CONTAINER
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    cursor: pointer;
+    /* Change cursor to pointer to indicate it's clickable */
 }
 
-    
+
 .featured.background_content::after {
-    content: ""; /* Create a pseudo-element to cover the image */
+    content: "";
+    /* Create a pseudo-element to cover the image */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure the pseudo-element is on top of the image */
-    cursor: pointer; /* Change cursor to pointer */
+    z-index: 1;
+    /* Ensure the pseudo-element is on top of the image */
+    cursor: pointer;
+    /* Change cursor to pointer */
 }
-    
+
 .featured.background_content:hover::after {
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add a semi-transparent overlay on hover */
 }
+
 .cocktails.background_content {
     background: url('../images/cocktail.jpg') no-repeat center center;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    cursor: pointer;
+    /* Change cursor to pointer to indicate it's clickable */
 }
 
-    
+
 .cocktails.background_content::after {
-    content: ""; /* Create a pseudo-element to cover the image */
+    content: "";
+    /* Create a pseudo-element to cover the image */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure the pseudo-element is on top of the image */
-    cursor: pointer; /* Change cursor to pointer */
+    z-index: 1;
+    /* Ensure the pseudo-element is on top of the image */
+    cursor: pointer;
+    /* Change cursor to pointer */
 }
-    
+
 .cocktails.background_content:hover::after {
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add a semi-transparent overlay on hover */
 }
 
 .takeout.background_content {
@@ -332,23 +342,28 @@ TOP OF HOMEPAGE CONTAINER
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    cursor: pointer;
+    /* Change cursor to pointer to indicate it's clickable */
 }
 
-    
+
 .takeout.background_content::after {
-    content: ""; /* Create a pseudo-element to cover the image */
+    content: "";
+    /* Create a pseudo-element to cover the image */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure the pseudo-element is on top of the image */
-    cursor: pointer; /* Change cursor to pointer */
+    z-index: 1;
+    /* Ensure the pseudo-element is on top of the image */
+    cursor: pointer;
+    /* Change cursor to pointer */
 }
-    
+
 .takeout.background_content:hover::after {
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add a semi-transparent overlay on hover */
 }
 
 .reservation.background_content {
@@ -356,24 +371,77 @@ TOP OF HOMEPAGE CONTAINER
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    cursor: pointer;
+    /* Change cursor to pointer to indicate it's clickable */
 }
 
-    
+
 .reservation.background_content::after {
-    content: ""; /* Create a pseudo-element to cover the image */
+    content: "";
+    /* Create a pseudo-element to cover the image */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure the pseudo-element is on top of the image */
-    cursor: pointer; /* Change cursor to pointer */
+    z-index: 1;
+    /* Ensure the pseudo-element is on top of the image */
+    cursor: pointer;
+    /* Change cursor to pointer */
 }
-    
+
 .reservation.background_content:hover::after {
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay on hover */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add a semi-transparent overlay on hover */
 }
+
+.dish {
+    margin-bottom: 20px;
+    /* Adjust the value as needed for more or less spacing */
+}
+
+.card-header {
+    margin-bottom: 20px;
+    /* Adjust the value as needed for more or less spacing */
+}
+
+/* MENU */
+
+.menu-container {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.menu-image-column {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center images horizontally within their column */
+    margin-right: 40px;
+    /* Add space between menu content and images */
+    margin-left: 40px;
+}
+
+.menu-image {
+    width: 500px;
+    /* Set a fixed width for the images */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-bottom: 100px;
+    /* Add more space between images vertically */
+}
+
+.menu-content {
+    min-width: 60%;
+    /* Set a minimum width for the menu content */
+}
+
+
+
+
 /*========================
 DESCRIPTION BODY CONTENT
 =========================*/
@@ -411,12 +479,12 @@ IMAGE DESCRIPTION BODY CONTENT
     display: none;
 }
 
-/*========================
+/* /*========================
 FIRST FOOTER CONTENT
 =========================*/
 
 
-.first_footer {
+/* .first_footer {
     background-color: #1e1e1e;
     text-align: center;
 }
@@ -484,13 +552,13 @@ FIRST FOOTER CONTENT
 
 .direction a {
     color: white !important;
-}
-
+} */
+*/
 /*========================
 SECOND FOOTER CONTENT
 =========================*/
 
-footer.sub_footer {
+/* footer.sub_footer {
     background-color: #1C1C1C;
     padding: 20px;
 }
@@ -506,16 +574,16 @@ p.sub-footer-text a {
 
 /*Contact */
 
-.contact-text {
+/* .contact-text {
     margin: 45px auto;
 }
 
 /* Contact Form */
-#contact .contact-form {
+/* #contact .contact-form {
     margin: 0 auto;
-    padding: 25px 25px 0px 25px;
-    /* -webkit-box-shadow: 0px 1px 4px rgba(0,0,0, 0.2); */
-}
+    padding: 25px 25px 0px 25px; */
+/* -webkit-box-shadow: 0px 1px 4px rgba(0,0,0, 0.2); */
+/* }
 
 .mail-message-area {
     width: 100%;
@@ -545,10 +613,10 @@ p.sub-footer-text a {
 
 .inner.contact {
     padding: 50px 0;
-}
+} */
 
 /* Input Styles */
-#contact {
+/* #contact {
     margin-bottom: 40px;
 }
 
@@ -570,9 +638,9 @@ p.sub-footer-text a {
 
 .form {
     width: 100%;
-    padding: 16.94px;
-    /* background:#E2E2E2; */
-    border: 1px solid rgba(13, 12, 12, 0.23);
+    padding: 16.94px; */
+/* background:#E2E2E2; */
+/* border: 1px solid rgba(13, 12, 12, 0.23);
     margin-bottom: 25px;
     color: #727272 !important;
     font-size: 13px;
@@ -595,10 +663,10 @@ p.sub-footer-text a {
     height: 200px;
     max-height: 200px;
     max-width: 100%;
-}
+} */
 
 /* Generic Button Styles */
-.button {
+/* .button {
     padding: 8px 12px;
     background: #0A5175;
     display: block;
@@ -618,11 +686,11 @@ p.sub-footer-text a {
 .button:hover {
     background: #8BC3A3;
     color: white;
-}
+} */
 
 /* Send Button Styles */
 
-.form-btn {
+/* .form-btn {
     width: 180px;
     display: block;
     float: left;
@@ -664,7 +732,7 @@ div .fa-2x {
 
 .navbar-default {
     border: 0 !important;
-}
+} */
 
 /*======================
 BODY MARGINS AND PADDING
@@ -672,6 +740,7 @@ BODY MARGINS AND PADDING
 .main {
     margin-top: 80px;
 }
+
 /*========================
 MEDIA QUERIES MOBILE
 =========================*/
@@ -724,8 +793,8 @@ MEDIA QUERIES TABLET
     /*========================
     NAV
     =========================*/
-    
-    
+
+
     .navbar-collapse {
         height: 70px;
         padding-top: 10px;
@@ -860,7 +929,7 @@ MEDIA QUERIES TABLET
     Social Connect
     =========================*/
 
-section.social_connect {
+/* section.social_connect {
     background-color: black;
     text-align: center;
     margin-bottom: 50px;
@@ -883,12 +952,12 @@ section.social_connect {
     display: inline-block;
     margin: 0 auto;
     width: 325px;
-}
+} */
 
 /*END OF MEDIA QUERY*/
 
 /*========================
-MEDIA QUERIE DESKTOP
+MEDIA QUERY DESKTOP
 =========================*/
 
 @media (min-width: 1100px) {
@@ -896,68 +965,68 @@ MEDIA QUERIE DESKTOP
     .starter_container {
         background-attachment: fixed;
     }
+}
 
-
-    /*========================
+/*========================
     BACKGROUND CONTENT
     =========================*/
 
 
-    .background_content h1 {
-        font-size: 5em;
-        position: relative;
-        top: 41%;
-        width: 100%;
-        color: white;
-        padding: 0;
-        border: 0;
-        display: inline-block;
-        margin-top: 20px;
-    }
+.background_content h1 {
+    font-size: 5em;
+    position: relative;
+    top: 41%;
+    width: 100%;
+    color: white;
+    padding: 0;
+    border: 0;
+    display: inline-block;
+    margin-top: 20px;
+}
 
-    .background_content h1 span {
-        color: white;
-        padding: 0;
-        border-bottom: 12px solid #fff;
-    }
+.background_content h1 span {
+    color: white;
+    padding: 0;
+    border-bottom: 12px solid #fff;
+}
 
-    /*========================
+/*========================
     DESCRIPTION BODY CONTENT
     =========================*/
 
-    .margin-right {
-        margin-right: 5%;
-    }
+.margin-right {
+    margin-right: 5%;
+}
 
-    .margin-left {
-        margin-left: 5%;
-    }
+.margin-left {
+    margin-left: 5%;
+}
 
-    .background_content:nth-of-type(2),
-    .background_content:nth-of-type(4) {
-        background-attachment: fixed;
-    }
+.background_content:nth-of-type(2),
+.background_content:nth-of-type(4) {
+    background-attachment: fixed;
+}
 
-    .description_body {
-        max-width: 450px;
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0;
-        margin-top: 10px;
-    }
+.description_body {
+    max-width: 450px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    margin-top: 10px;
+}
 
 
-    .picture_content {
-        display: inline-block;
-        padding: 0;
-        vertical-align: middle;
-    }
+.picture_content {
+    display: inline-block;
+    padding: 0;
+    vertical-align: middle;
+}
 
-    /*========================
+/*========================
     FIRST FOOTER CONTENT
     =========================*/
 
-    .social_heading {
+/* .social_heading {
         font-size: 33px;
         margin: 50px 0 0 0;
     }
@@ -983,7 +1052,7 @@ MEDIA QUERIE DESKTOP
     .social_icons li a {
         font-size: 30px;
     }
-}
+} */
 
 .no-bullets {
     color: white;
@@ -991,7 +1060,9 @@ MEDIA QUERIE DESKTOP
     padding-bottom: 50px;
 }
 
-#contact, description_content, #footer-nav {
+#contact,
+description_content,
+#footer-nav {
     height: 80px;
 }
 
