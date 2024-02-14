@@ -6,21 +6,20 @@
     <img src="/images/calamari.jpg" alt="Calamari" class="menu-image">
   </div>
 
-  <div class="menu-content">
-    <div class="card-header">
-      <h2>
+  <div class="menu-content" align="center">
+    <div class="card-header pacifico-regular" style="font-size: 50px;">
         Our Menu
       </h2>
     </div>
     {{#each menu as |menuItem|}}
       <div class="dish">
-        <p class="item-and-price">
+        <p class="item-and-price pacifico-regular" style="font-size: 30px;">
           {{menuItem.menu_item}} - ${{menuItem.price}}
         </p>
-        <p class="description">
+        <p class="description kanit-medium" style="font-size: 20px;">
           {{menuItem.description}}
         </p>
-        <p class="additional-info">
+        <p class="additional-info kanit-extralight-italic">
           {{#if menuItem.has_nuts}}
             <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
           {{/if}}
@@ -31,7 +30,7 @@
             <span class="info">Vegetarian Option</span>&nbsp;&nbsp;&nbsp;
           {{/if}}
           {{#if menuItem.gluten_free}}
-            <<span class="info">Gluten Free Option</span>&nbsp;&nbsp;&nbsp;
+            <span class="info">Gluten Free Option</span>&nbsp;&nbsp;&nbsp;
           {{/if}}
         </p>
       </div>
