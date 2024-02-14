@@ -1,29 +1,19 @@
-<style>
-  .dish {
-    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
-  }
-   .card-header {
-    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
-   }
-</style>
-
-{{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
 
 <div class="order-container">
-    <div class="card-header text-center">
-        <h2>
+    <div class="card-header text-center" style="margin-top: 80px;">
+        <h2 class="pacifico-regular" style="font-size: 50px;">
             Place Order for Pick-Up
         </h2>
     </div>
      <div class="row">
     {{#each order as |order|}}
-    <div class="col-md-4 dish mx-auto text-center">
+    <div class="col-md-4 dish mx-auto text-center" style="margin-top: 80px;">
       <!-- col-md-4: Each card will take up 4 columns on medium and larger screens -->
       <p class="item-and-price">
-        <div class="orderItemName">{{order.menu_item}}</div>
-        <div class="orderPrice">{{order.price}}</div>
+        <div class="orderItemName kanit-medium" style="font-size: 30px;">{{order.menu_item}}</div>
+        <div class="kanit-medium" style="font-size: 28px;">{{order.price}}</div>
       </p>
-      <p class="additional-info">
+      <p class="additional-info kanit-extralight-italic" style="margin-top: 10px;">
         {{#if order.has_nuts}}
           <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
         {{/if}}
@@ -39,7 +29,7 @@
       </p>
       <div>
         <label for="itemQty">Quantity:</label>
-        <select class="itemQty" name="itemQty" required>
+        <select class="itemQty kanit-medium" name="itemQty" required>
           <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>

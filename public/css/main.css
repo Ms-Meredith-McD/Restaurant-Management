@@ -16,7 +16,13 @@ GLOBAL
 #contact {
     padding: 40px;
 }
-
+.dish {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
+   .card-header {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+   }
+   
 .pacifico-regular {
     font-family: "Pacifico", cursive;
     font-weight: 400;
