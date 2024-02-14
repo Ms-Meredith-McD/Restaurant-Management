@@ -20,8 +20,8 @@ form.addEventListener('submit', async function(event) {
     party_size: tableSize,
     reservation_datetime: reservationDateTime,
     notes: notes,
-    customer_id: 11
   }
+  console.log(payload)
 
   const resp = await fetch("/api/reservation", {
       method: "POST",

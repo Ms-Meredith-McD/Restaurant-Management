@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     quantity: quantity
                 });
             }
-             document.location.replace('/thank-you')
         });
 
         const taxRate = 0.06875; // 6.875%
@@ -84,15 +83,15 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify(orderData)
         })
-            .then(response => response.json())
+            .then(response => response.json()) 
             .then(data => {
                 // Handle the response from the server (e.g., display a success message)
                 console.log(data);
-                document.location.replace('/thank-you');
+                document.location.replace('/thank-you');  
             })
             .catch(error => {
                 // Handle errors
-                console.error("Error submitting order:", error);
+                console.error("Error submitting order:", error);   
             });
     });
    
