@@ -23,7 +23,7 @@ Manager view: A page only for manager's of Gary's Gitpub. This page has features
 
 ## Technical Details
 
-
+The base of this project was HTML, CSS, Javascript, Express, Sequelize, and Handlebars.
 
 ## Table of Contents
 
@@ -31,11 +31,15 @@ Manager view: A page only for manager's of Gary's Gitpub. This page has features
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
-- [Questions](#questions)
+
 
 ## Installation
 
 This project is running off of heroku and can be found at https://group-1-restaurant-manager-dc017dce6dee.herokuapp.com/
+
+Interested in running the app locally instead? 
+
+Clone the repository. First you must take the .env.example file and enter your mysql username and password. Rename this file to just .env, and save. Run npm install within the console to install the correct dependencies required. Once that is done, you will need the database to be created and seeded. Assuming you have mysql, you are able to run mysql -u root -p, and then type your password to start mysql in the command line. You can then enter SOURCE ./db/schema.sql to create the database. Exit out of the mysql terminal, and return to the command line. Run node seeds/ to seed the created database. Once you have completed this, you can run node server.js to launch the website.
 
 ## Usage
 
@@ -61,31 +65,38 @@ The menu page features Gary's Gitpubs entire menu. Each item features a name, pr
 
 The order page allows the user to place a fictional order of anything on the menu. This page features everything the menu page has, except for item descriptions.
 
-![Example Image of the site](./public/images/README-Images/orderItemsPage.png)
+![Example Image of the site](./public/images/README-Images/orderPage.png)
 
 
 The user can select the quantity they want of each item, and each time this is done the order's subtotal adds up at the bottom of the page. Additionally the tax is listed directly below the subtotal which automatically calculates. Once the user is done ordering, they can optionally add a tip which then produces the final total cost of the order.
  
-![Example Image of the site](./public/images/README-Images/orderTotalPage.png)
+![Example Image of the site](./public/images/README-Images/orderTotal.png)
  
 
 Upon placing the order, the user is redirected to a thank you page which lists the logged in users email, the placed order, timestamp the order was palced, and an estimation of when the order will be done.
 
-![Example Image of the site](./public/images/README-Images/thankYouPage.png)
+![Example Image of the site](./public/images/README-Images/thankPage.png)
+
 
 If you wish to know more about Gary's Gitpub, visit the about us page.
 
-
-![Example Image of the site](./public/images/README-Images/aboutUsPage.png)
+![Example Image of the site](./public/images/README-Images/aboutPage.png)
 
 ## Credits
+
+This project would not have been possible if not for the team working on it. Special thanks to 
+
+- Andrew Helmin, [rb2277](https://github.com/AHelmin) 
+- Jacob Maddaus, [rb2277](https://github.com/J-maddaus) 
+- Meredith Mcdonald, [rb2277](https://github.com/Ms-Meredith-McD)
+- Riley Burns, [rb2277](https://github.com/RB2277) 
+- Tyler Peterson, [rb2277](https://github.com/tylerpeterson8791)  
+
+Resources used:
+
 
 
 
 ## License
 
 This project is licensed under the MIT license. License link: https://opensource.org/licenses/mit/
-
-## Questions
-
-
