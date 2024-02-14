@@ -24,8 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const total = subtotal + tax + tip;
 
-        // Update the DOM elements with the calculated values
-        // orderSubtotalElement.text(`$TEST`);
+       
         orderSubtotalElement.text(`$${subtotal.toFixed(2)}`);
         orderTaxElement.text(`$${tax.toFixed(2)}`);
         orderTotalElement.text(`$${total.toFixed(2)}`);

@@ -16,7 +16,13 @@ GLOBAL
 #contact {
     padding: 40px;
 }
-
+.dish {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+  }
+   .card-header {
+    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
+   }
+   
 .pacifico-regular {
     font-family: "Pacifico", cursive;
     font-weight: 400;
@@ -254,8 +260,8 @@ TOP OF HOMEPAGE CONTAINER
 
 
 /* ========================
-    IMAGE INTRO BANNER CONTENT
-   =========================*/
+IMAGE INTRO BANNER CONTENT
+=========================*/
 
 .background_content {
     position: relative;
@@ -467,6 +473,7 @@ TOP OF HOMEPAGE CONTAINER
     margin-bottom: 20px;
     /* Add space between each d-flex container */
 }
+
 
 
 /*========================

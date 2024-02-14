@@ -1,29 +1,18 @@
-<style>
-  .dish {
-    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
-  }
-   .card-header {
-    margin-bottom: 20px; /* Adjust the value as needed for more or less spacing */
-   }
-</style>
-
-{{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
-
-<div class="order-container" style="margin-top: 50px;">
-    <div class="card-header text-center">
-        <h2>
+<div class="order-container">
+    <div class="card-header text-center" style="margin-top: 80px;">
+        <h2 class="pacifico-regular" style="font-size: 50px;">
             Place Order for Pick-Up
         </h2>
     </div>
      <div class="row">
     {{#each order as |order|}}
-    <div class="col-md-4 dish mx-auto text-center">
+    <div class="dish text-center">
       <!-- col-md-4: Each card will take up 4 columns on medium and larger screens -->
       <p class="item-and-price">
-        <div class="orderItemName">{{order.menu_item}}</div>
-        <div class="orderPrice">{{order.price}}</div>
+        <div class="orderItemName kanit-medium" style="font-size: 30px;">{{order.menu_item}}</div>
+        <div class="orderPrice kanit-medium" style="font-size: 30px;">{{order.price}}</div>
       </p>
-      <p class="additional-info">
+      <p class="additional-info kanit-extralight-italic">
         {{#if order.has_nuts}}
           <span class="info">Contains Nuts</span>&nbsp;&nbsp;&nbsp;
         {{/if}}
@@ -56,22 +45,22 @@
     </div>
     {{/each}}
 </div>
-    <div class="row text-center">
-        <p>Subtotal</p>
-        <p id="orderSubtotal"></p>
+    <div class="row text-center" style="font-size: 30px; border: 1px solid #000">
+        <p class="kanit-medium">Subtotal</p>
+        <p id="orderSubtotal" class="kanit-medium">$0.00</p>
         {{!-- ^^giving the above an id so it can be populated.  Item price * quantity SUM all formula in JS --}}
      <div>
-        <p>Tax</p>
-        <p id="orderTax"></p>
+        <p class="kanit-medium">Tax</p>
+        <p  class="kanit-medium" id="orderTax">$0.00</p>
         {{!-- ^^giving the above an id so it can be populated.  Subtotal * 6.875% formula in JS --}}
     </div>
     <div>
-        <p>Tip</p>
+        <p class="kanit-medium">Tip</p>
          <input type="number" name="orderTip" id="orderTip" value="" data-type="currency" placeholder="$0.00"> 
     </div>
     <div>
-        <p>TOTAL</p>
-        <p id="orderTotal"></p>
+        <p  class="kanit-medium">TOTAL</p>
+        <p  class="kanit-medium" id="orderTotal">$0.00</p>
         {{!-- ^^giving the above an id so it can be populated.  subtotal + tax + tip formula in JS --}}
     </div>
     <div>
