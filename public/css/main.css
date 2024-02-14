@@ -452,12 +452,6 @@ IMAGE INTRO BANNER CONTENT
     /* Add more space between images vertically */
 }
 
-.order-menu-content {
-    min-width: 60%; /* Set a minimum width for the menu content */
-    margin-top: 200px !important; /* Adjust this value as needed */
-}
-
-
 .menu-content {
     min-width: 60%;
     /* Set a minimum width for the menu content */
@@ -476,12 +470,14 @@ IMAGE INTRO BANNER CONTENT
 
 /* ORDER TAKEOUT */
 
-.order {
-    margin-top: 20px; /* Adjust this value as needed */
+.order-menu-container {
+    min-width: 100%; /* Set a minimum width for the menu content */
+    margin-top: 300px !important; /* Adjust this value as needed */
+    padding: 100px
 }
 
-.order-container {
-    margin-top: 20px; /* Adjust this value as needed */
+.order-content {
+    margin-top: 40px; /* Adjust this value as needed */
 }
 
 
