@@ -30,12 +30,15 @@ router.get('/:id', (req, res) => {
 router.post('/', async (req, res) => {
     try {
       const customerId = req.session.customer_id;
+      const customer = await Customers.findByPk(customerId);
         // Create the reservation
-      const newReservation = await Reservations.create(req.body);
+      const newReservation = await Reservations.create(
+        {...req.body,
+          customer_id: customerId,
+        });
       
       // Retrieve customer information associated with the reservation
-      const customer = await Customers.findByPk(customerId);
-      console.log(customer.email);
+     
       // Send email to the customer
       const customerMailOptions = {
         from: 'confirmreservation1@zohomail.com',

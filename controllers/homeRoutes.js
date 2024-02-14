@@ -5,9 +5,35 @@ const withAuth = require('../utils/auth')
 
 // GET homepage
 router.get('/', async (req, res) => {
-    res.render('homepage', {
-        logged_in: req.session.logged_in
+    const customerId = req.session.customer_id;
+    const customerManager = await Customer.findByPk(customerId);
+    const orderData = await Order.findAll({
+        include: [{
+            model: Customer,
+        }]
     });
+    const order = orderData.map(item => item.get({ plain: true }));
+    const reservationData = await Reservation.findAll({
+        include: [{ model: Customer}],
+        order: [['reservation_datetime', 'ASC']],
+    })
+    const reservation = reservationData.map(item => item.get({ plain: true }));
+    const customerData = await Customer.findAll();
+    const customer = customerData.map(item => item.get({ plain: true }));
+    if (req.session.customer_id && customerManager.is_manager) {
+        res.render('manager', {
+            order: order,
+            reservation: reservation,
+            customer: customer,
+            logged_in: req.session.logged_in,
+            is_manager: customerManager.is_manager
+        });
+    } else {
+        res.render('homepage', {
+            logged_in: req.session.logged_in,
+            is_manager: customer.is_manager
+        });
+    }
 });
 
 // router.get('/', async (req, res) => {
@@ -18,12 +44,17 @@ router.get('/', async (req, res) => {
 
 //GET about us page
 router.get('/about-us', async (req, res) => {
+    const customerId = req.session.customer_id;
+    const customer = await Customer.findByPk(customerId);
     res.render('about-us', {
-        logged_in: req.session.logged_in
+        logged_in: req.session.logged_in,
+        is_manager: customer.is_manager
     });
 });
 
 router.get('/thank-you', async (req, res) => {
+    const customerId = req.session.customer_id;
+    const customer = await Customer.findByPk(customerId);
     const orderData = await Order.findOne({
         order: [['id', 'DESC']],
         include: [{
@@ -34,17 +65,18 @@ router.get('/thank-you', async (req, res) => {
     const order = orderData.get({ plain: true });
     res.render('thank-you', {
         order: order,
-        logged_in: req.session.logged_in
+        logged_in: req.session.logged_in,
+        is_manager: customer.is_manager
     })
 });
 
 //GET Manager hub
-router.get('/manager', async (req, res) => {
+router.get('/manager', withAuth, async (req, res) => {
     const orderData = await Order.findAll({
         include: [{
             model: Customer,
         }]
-    }); 
+    });
     const order = orderData.map(item => item.get({ plain: true }));
     const reservationData = await Reservation.findAll({
         order: [['reservation_datetime', 'ASC']],
@@ -62,7 +94,7 @@ router.get('/manager', async (req, res) => {
 
 //customer profile page, lists past reservations and orders
 router.get('/login', (req, res) => {
-    
+
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
         //*********REDIRECTS TO HOMEPAGE */
@@ -74,39 +106,41 @@ router.get('/login', (req, res) => {
     });
 });
 
-// Profile page withAuth middleware to prevent access to route
-router.get('/profile', async (req, res) => {
-    try {
-        // Find the logged in user based on the session ID
-        //*********WILL NEED TO CHECK HOW SESSION IS STORING USER/CUSTOMER_ID */
-        const customerData = await Customer.findByPk(req.session.customer_id, {
-            attributes: { exclude: ['password'] },
-            include: [{ model: Order },
-            {
-                model: Reservation,
-                attributes: ['id', 'reservation_datetime']
-            },
-            {
-                model: Menu,
-                attributes: ['menu_item']
-            }
-            ],
-        });
+// // Profile page withAuth middleware to prevent access to route
+// router.get('/profile', async (req, res) => {
+//     try {
+//         // Find the logged in user based on the session ID
+//         //*********WILL NEED TO CHECK HOW SESSION IS STORING USER/CUSTOMER_ID */
+//         const customerData = await Customer.findByPk(req.session.customer_id, {
+//             attributes: { exclude: ['password'] },
+//             include: [{ model: Order },
+//             {
+//                 model: Reservation,
+//                 attributes: ['id', 'reservation_datetime']
+//             },
+//             {
+//                 model: Menu,
+//                 attributes: ['menu_item']
+//             }
+//             ],
+//         });
 
-        const customer = customerData.get({ plain: true });
+//         const customer = customerData.get({ plain: true });
 
-        res.render('profile', {
-            ...customer,
-            logged_in: req.session.logged_in
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+//         res.render('profile', {
+//             ...customer,
+//             logged_in: req.session.logged_in
+//         });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 // Menu page, auth not required, could add auth for our ordering system
 router.get('/menu', async (req, res) => {
     try {
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
         //find all menu items
         const menuData = await Menu.findAll({
 
@@ -117,7 +151,8 @@ router.get('/menu', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, menu: menu may cause issues since this is now an arraty */
         res.render('menu', {
             menu: menu,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            is_manager: customer.is_manager
         });
     } catch (err) {
         res.status(500).json(err);
@@ -128,6 +163,8 @@ router.get('/menu', async (req, res) => {
 router.get('/menu/:id', async (req, res) => {
     try {
         const menuData = await Menu.findByPk(req.params.id);
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
 
         if (!menuData) {
             res.render('menu', { error: "Menu item not found!" });
@@ -135,7 +172,10 @@ router.get('/menu/:id', async (req, res) => {
         }
 
         const menu = menuData.get({ plain: true });
-        res.render('menu', { menu, logged_in: req.session.logged_in });
+        res.render('menu', {
+            menu: menu, logged_in: req.session.logged_in,
+            is_manager: customer.is_manager
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -143,10 +183,11 @@ router.get('/menu/:id', async (req, res) => {
 });
 
 // Order page, auth required, THIS PAGE SHOWS ALL ORDERS PLACED, NOT TO POST AN ORDER, THAT WILL BE DIFFERENT
-router.get('/order', async (req, res) => {
+router.get('/order', withAuth, async (req, res) => {
 
     try {
-        
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
         //find all order items
         const orderData = await Menu.findAll();
 
@@ -155,7 +196,8 @@ router.get('/order', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, order:order may cause issues since this is now an array */
         res.render('order', {
             order: order,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            is_manager: customer.is_manager
         });
     } catch (err) {
         res.status(500).json(err);
@@ -163,9 +205,11 @@ router.get('/order', async (req, res) => {
 });
 
 // GET one order item
-router.get('/order/:id', async (req, res) => {
+router.get('/order/:id', withAuth, async (req, res) => {
     try {
         const orderData = await Order.findByPk(req.params.id);
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
 
         if (!orderData) {
             res.render('order', { error: "Order not found!" });
@@ -173,7 +217,7 @@ router.get('/order/:id', async (req, res) => {
         }
 
         const order = orderData.get({ plain: true });
-        res.render('order', { order, logged_in: req.session.logged_in });
+        res.render('order', { order, logged_in: req.session.logged_in, is_manager: customer.is_manager });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -181,8 +225,10 @@ router.get('/order/:id', async (req, res) => {
 });
 
 // Customer page, auth required, THIS PAGE SHOWS ALL CUSTOMERS
-router.get('/customer', async (req, res) => {
+router.get('/customer', withAuth, async (req, res) => {
     try {
+        const customerId = req.session.customer_id;
+        const customerManager = await Customer.findByPk(customerId);
         //find all customer items
         const customerData = await Customer.findAll();
 
@@ -191,7 +237,8 @@ router.get('/customer', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('customer', {
             customer: customer,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            is_manager: customerManager.is_manager
         });
     } catch (err) {
         res.status(500).json(err);
@@ -199,8 +246,10 @@ router.get('/customer', async (req, res) => {
 });
 
 // GET one customer item
-router.get('/customer/:id', async (req, res) => {
+router.get('/customer/:id', withAuth, async (req, res) => {
     try {
+        const customerId = req.session.customer_id;
+        const customerManager = await Customer.findByPk(customerId);
         const customerData = await Customer.findByPk(req.params.id);
 
         if (!customerData) {
@@ -209,7 +258,10 @@ router.get('/customer/:id', async (req, res) => {
         }
 
         const customer = customerData.get({ plain: true });
-        res.render('customer', { customer, logged_in: req.session.logged_in });
+        res.render('customer', {
+            customer, logged_in: req.session.logged_in,
+            is_manager: customerManager.is_manager
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -217,8 +269,10 @@ router.get('/customer/:id', async (req, res) => {
 });
 
 // Reservation page, auth required, THIS PAGE SHOWS ALL RESERVATIONS, this will not post new reservations, that will be done on front end with fetch
-router.get('/reservation', async (req, res) => {
+router.get('/reservation', withAuth, async (req, res) => {
     try {
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
         //find all reservation items
         const reservationData = await Reservation.findAll();
 
@@ -227,7 +281,8 @@ router.get('/reservation', async (req, res) => {
         //******THIS WILL NEED TO BE TESTED, customer: customer may cause issues since this is now an array */
         res.render('reservation', {
             reservation: reservation,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            is_manager: customer.is_manager
         });
     } catch (err) {
         res.status(500).json(err);
@@ -235,8 +290,10 @@ router.get('/reservation', async (req, res) => {
 });
 
 // GET one reservation item
-router.get('/reservation/:id', async (req, res) => {
+router.get('/reservation/:id', withAuth, async (req, res) => {
     try {
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
         const reservationData = await Reservation.findByPk(req.params.id);
 
         if (!reservationData) {
@@ -245,7 +302,7 @@ router.get('/reservation/:id', async (req, res) => {
         }
 
         const reservation = reservationData.get({ plain: true });
-        res.render('reservation', { reservation, logged_in: req.session.logged_in });
+        res.render('reservation', { reservation, logged_in: req.session.logged_in, is_manager: customer.is_manager });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -254,7 +311,8 @@ router.get('/reservation/:id', async (req, res) => {
 
 router.get('/cocktail', async (req, res) => {
     try {
-        
+        const customerId = req.session.customer_id;
+        const customer = await Customer.findByPk(customerId);
         const cocktailData = await Cocktail.findAll({
 
         });
@@ -263,6 +321,7 @@ router.get('/cocktail', async (req, res) => {
         res.render('cocktail', {
             cocktail: cocktail,
             logged_in: req.session.logged_in,
+            is_manager: customer.is_manager
         });
     } catch (err) {
         res.status(500).json(err);
