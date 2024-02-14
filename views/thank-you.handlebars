@@ -6,28 +6,23 @@
 
 
 <div class="d-flex container-fluid flex-wrap-column flex-md-row flex-column">
-    <div class="d-flex justify-content-center align-items-center">
-        <p>
-            Thank you, {{order.customer.name}} for your order.
-        </p>
-        <br>
-        <p>
-            A confirmation will be sent to your email address: {{order.customer.email}}
-        </p>
-        <br>
-        <p>
+    <div class="d-flex text-center">
+         <p class="kanit-medium" style="font-size: 50px;">
             Your order number is: {{ order.id }}
         </p>
+         <p class="kanit-medium" style="font-size: 50px;">
+            Your order of:
         <br>
         <p>
             Your order of:
         </p>
         <br>
         {{#each order.items}}
-        <p>{{this.menu_name}} Quantity {{this.quantity}}</p>
+         <p class="kanit-medium" style="font-size: 50px;">{{this.menu_name}} X {{this.quantity}}</p>
         {{/each}}
-        <p>
-            Placed {{order.createdAt}}, will be ready in 30 minutes or less.
+
+         <p class="kanit-medium" style="font-size: 50px;">
+            Your order will be ready in about 30 minutes. Please see the host for payment and pickup!
         </p>
         <br>
         <button type="button" id="home-btn">Back to Homepage</button>
