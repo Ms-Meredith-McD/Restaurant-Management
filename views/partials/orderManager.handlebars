@@ -1,22 +1,19 @@
 <div class="order-manager container-fluid">
     {{#each order as |order|}}
-    <div class="card col-md-4 col-sm-12 mb-4 d-flex flex-column h-100"  style="border: 1px solid #000">
+    <div class="card col-md-4 col-sm-12 mb-4 d-flex flex-column h-100" style="border: 1px solid #000">
         <div class="card-header">
             <p>{{order.customer.name}}</p>
-        </div>
-        <div class="card-body">
             <p>Subtotal: {{order.subtotal}}</p>
             <p>Tax: {{order.tax}}</p>
             <p>Tip: {{order.tip}}</p>
             <p>Total: {{order.total}}</p>
 
             {{#each order.items}}
-                <p>{{this.quantity}} X {{this.menu_name}}</p>
+            <p>{{this.quantity}} X {{this.menu_name}}</p>
+            {{/each}}
+            <button type="button" class="btn btn-danger order-delete" data-id="{{order.id}}">Delete Order</button>
             {{/each}}
         </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-danger order-delete" data-id="{{order.id}}">Delete Order</button>
-        </div>
     </div>
-    {{/each}}
+
 </div>
