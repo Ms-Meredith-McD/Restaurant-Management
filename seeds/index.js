@@ -4,10 +4,8 @@ const seedMenu = require('./menuData');
 const seedReservation = require('./reservationData');
 const seedOrder = require('./orderData');
 const seedCocktail = require('./cocktailData');
-const  { OrderMenu } = require('../models')
 
 const seedAll = async () => {
-  await OrderMenu.sync({ force: true });
   await sequelize.sync({ force: true });
 
   await seedCustomer()
