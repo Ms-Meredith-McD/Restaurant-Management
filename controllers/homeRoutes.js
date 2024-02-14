@@ -36,11 +36,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-// router.get('/', async (req, res) => {
-//     res.render('homepage', {
-//         logged_in: req.session.logged_in
-//     });
-// });
+
+
 
 //GET about us page
 router.get('/about-us', async (req, res) => {
@@ -71,26 +68,26 @@ router.get('/thank-you', async (req, res) => {
 });
 
 //GET Manager hub
-router.get('/manager', withAuth, async (req, res) => {
-    const orderData = await Order.findAll({
-        include: [{
-            model: Customer,
-        }]
-    });
-    const order = orderData.map(item => item.get({ plain: true }));
-    const reservationData = await Reservation.findAll({
-        order: [['reservation_datetime', 'ASC']],
-    })
-    const reservation = reservationData.map(item => item.get({ plain: true }));
-    const customerData = await Customer.findAll();
-    const customer = customerData.map(item => item.get({ plain: true }));
-    res.render('manager', {
-        order: order,
-        reservation: reservation,
-        customer: customer,
-        logged_in: req.session.logged_in
-    })
-});
+// router.get('/manager', withAuth, async (req, res) => {
+//     const orderData = await Order.findAll({
+//         include: [{
+//             model: Customer,
+//         }]
+//     });
+//     const order = orderData.map(item => item.get({ plain: true }));
+//     const reservationData = await Reservation.findAll({
+//         order: [['reservation_datetime', 'ASC']],
+//     })
+//     const reservation = reservationData.map(item => item.get({ plain: true }));
+//     const customerData = await Customer.findAll();
+//     const customer = customerData.map(item => item.get({ plain: true }));
+//     res.render('manager', {
+//         order: order,
+//         reservation: reservation,
+//         customer: customer,
+//         logged_in: req.session.logged_in
+//     })
+// });
 
 //customer profile page, lists past reservations and orders
 router.get('/login', (req, res) => {
@@ -148,7 +145,8 @@ router.get('/menu', async (req, res) => {
         //*********logged in set to false, ALL CAN SEE MENU NOW */
         //******THIS WILL NEED TO BE TESTED, menu: menu may cause issues since this is now an arraty */
         res.render('menu', {
-            menu: menu
+            menu: menu,
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -169,7 +167,8 @@ router.get('/menu/:id', async (req, res) => {
 
         const menu = menuData.get({ plain: true });
         res.render('menu', {
-            menu: menu
+            menu: menu,
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         console.log(err);
@@ -313,12 +312,18 @@ router.get('/cocktail', async (req, res) => {
 
         const cocktail = cocktailData.map(item => item.get({ plain: true }));
         res.render('cocktail', {
-            cocktail: cocktail
+            cocktail: cocktail,
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
+router.get('*', (req, res) => {
+    res.redirect('/')
+}
+    );
 
 module.exports = router;
 
