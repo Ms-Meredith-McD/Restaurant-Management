@@ -9,22 +9,24 @@
 
 {{!-- I'm adding the style up here for now for testing purposes.  This could be accomplished in CSS. --}}
 
-<div class="menu-container">
+<div class="cocktail-container" style="margin-top: 80px;">
   <div class="card-header">
-    <h2>
+    <h2 class="text-center pacifico-regular" style="font-size: 50px;">
       Cocktail List
     </h2>
   </div>
+  <div>
   {{#each cocktail as |cocktail|}}
-    <div class="drink">
-      <p class="item-and-price">
+    <div class="drink text-center">
+      <p class="item-and-price pacifico-regular" style="font-size: 30px;">
         {{cocktail.drink_name}} - ${{cocktail.price}}
       </p>
-      <p class="description">
+      <p class="description kanit-medium" style="font-size: 20px;">
         {{cocktail.description}}
       </p>
     </div>
   {{/each}}
+  </div>
 </div>
 
 {{!-- &nbsp; is a non breaking space --}}
