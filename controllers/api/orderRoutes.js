@@ -85,7 +85,7 @@ router.post('/', async (req, res) => {
       const orderData = req.body;
       // ... (customer_id logic)
       const customerId = req.session.customer_id;
-      console.log('Session:', req.session);
+      console.log(customerId);
       // Create a new order in the database
       const newOrder = await Order.create({
           customer_id: customerId,
@@ -96,7 +96,7 @@ router.post('/', async (req, res) => {
           items: orderData.items,
       });
 
-      await newOrder.save();
+      // await newOrder.save();
       res.status(201).json({ message: 'Order placed successfully', order: newOrder.toJSON() });
   } catch (error) {
       console.error('Error placing order:', error);

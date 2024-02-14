@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
       const newReservation = await Reservations.create(req.body);
       
       // Retrieve customer information associated with the reservation
-      const customer = await Customers.findByPk(req.body.customer_id);
+      const customer = await Customers.findByPk(customerId);
       console.log(customer.email);
       // Send email to the customer
       const customerMailOptions = {

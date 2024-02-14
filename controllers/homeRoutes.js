@@ -30,6 +30,7 @@ router.get('/thank-you', async (req, res) => {
             model: Customer,
         }]
     });
+    console.log(orderData)
     const order = orderData.get({ plain: true });
     res.render('thank-you', {
         order: order,
