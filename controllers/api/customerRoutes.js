@@ -9,7 +9,8 @@ router.post('/', async (req, res) => {
       const customerData = await Customer.create({
           name: req.body.name,
           email: req.body.email,
-          password: req.body.password
+          password: req.body.password,
+          is_manager: req.body.is_manager
       });
 
       req.session.save(() => {
