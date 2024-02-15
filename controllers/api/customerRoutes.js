@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
 
       req.session.save(() => {
           req.session.customer_id = customerData.id;
+          req.session.is_manager = customerData.is_manager;
           req.session.logged_in = true;
           res.status(200).json(customerData);
       });
@@ -108,8 +109,8 @@ router.post('/login', async (req, res) => {
       }
       req.session.save(() => {
         req.session.customer_id = customerData.id;
+        req.session.is_manager = customerData.is_manager;
         req.session.logged_in = true;
-        console.log(req.session)
         res.json({ user: customerData.name, message: 'You are now logged in!' });
       });
     } catch (err) {

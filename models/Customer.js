@@ -37,7 +37,7 @@ Customer.init(
         },
         is_manager: {
             type: DataTypes.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         }
     },
     {
