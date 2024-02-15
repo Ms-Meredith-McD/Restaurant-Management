@@ -16,6 +16,7 @@ form.addEventListener('submit', async function(event) {
     
     console.log(reservationDateTime)
    
+    //Gather payload data to POST
   let payload = {
     party_size: tableSize,
     reservation_datetime: reservationDateTime,
@@ -23,6 +24,7 @@ form.addEventListener('submit', async function(event) {
   }
   console.log(payload)
 
+  //Sends fetch request to POST new reservation
   const resp = await fetch("/api/reservation", {
       method: "POST",
       headers: {
