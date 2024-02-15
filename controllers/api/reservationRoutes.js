@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
         });
 });
 
-
 // GET BY ID
 router.get('/:id', (req, res) => {
     Reservations.findByPk(req.params.id).then((reservationData) => {
@@ -24,7 +23,6 @@ router.get('/:id', (req, res) => {
             res.json(err);
         });
 });
-
 
 // CREATE
 router.post('/', async (req, res) => {
@@ -78,7 +76,6 @@ router.post('/', async (req, res) => {
     }
   });
 
-
 //Update reservation
 router.put('/:id', (req, res) => {
     Reservations.update(
@@ -94,8 +91,6 @@ router.put('/:id', (req, res) => {
         })
         .catch((err) => res.json(err));
 });
-
-
 
 // DELETE
 router.delete('/:id', (req, res) => {
