@@ -2,11 +2,7 @@ const form = document.querySelector('form')
 form.addEventListener('submit', async function(event) {
     event.preventDefault()
 
-
-//Currently the customer id is hardcoded and we need to make it dynamic based off of
-//the logged in users id
-
-    // const customerId = document.querySelector(`input[name="name"]`).value;
+//Selectors for the values of the reservation
     const tableSize = document.querySelector(`select[name="tableSize"]`).value;
     const reservationDate = document.querySelector(`input[name="reservationDate"]`).value;
     const reservationTime = document.querySelector(`select[name="reservedTime"]`).value;
