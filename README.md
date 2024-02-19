@@ -21,9 +21,18 @@ Gary's Gitpub is a fully functional, interactive website designed for a fictiona
 
 * Manager view: A page only for manager's of Gary's Gitpub. This page has features such as editing/deleting the menu items, reservations, and customer data.
 
-## Technical Details
+## Tech Stack
 
-The base of this project was HTML, CSS, Javascript, Express, Sequelize, and Handlebars. The NPM package 'NodeMailer' was used within the project to send the user an email upon placing a reservaton. 
+* HTML
+* CSS & Bootstrap
+* JavaScript and jQuery
+* Express
+* Handlebars
+* MySQL2 & Sequelize
+* bcrypt
+* Dotenv
+* Nodemailer
+
 
 ## Table of Contents
 
